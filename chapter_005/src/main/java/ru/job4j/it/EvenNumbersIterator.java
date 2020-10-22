@@ -14,10 +14,9 @@ public class EvenNumbersIterator implements Iterator<Integer> {
     @Override
     public boolean hasNext() {
         boolean flag = false;
-        if(point + 1 == result.length) {
+        if (point + 1 == result.length) {
             flag = result[point] % 2 == 0;
-        }
-        else {
+        } else {
             flag = (result[point + 1]) % 2 == 0;
         }
         return flag;
@@ -27,8 +26,9 @@ public class EvenNumbersIterator implements Iterator<Integer> {
     public Integer next() {
         if (hasNext()) {
             point++;
+        } else {
+            throw new NoSuchElementException();
         }
-        else throw new NoSuchElementException();
 
         return result[point++];
     }
