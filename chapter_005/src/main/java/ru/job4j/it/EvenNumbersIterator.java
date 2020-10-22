@@ -24,11 +24,15 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
+        if (result[point] % 2 == 0) {
+            return result[point++];
+        }
         if (hasNext()) {
             point++;
         } else {
             throw new NoSuchElementException();
         }
+
 
         return result[point++];
     }
