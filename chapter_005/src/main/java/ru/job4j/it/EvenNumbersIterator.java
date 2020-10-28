@@ -37,9 +37,6 @@ public class EvenNumbersIterator implements Iterator<Integer> {
         } else {
             throw new NoSuchElementException();
         }
-
-
         return result[point++];
-
     }
 }
