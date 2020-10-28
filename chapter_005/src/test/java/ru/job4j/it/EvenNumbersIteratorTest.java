@@ -57,4 +57,11 @@ public class EvenNumbersIteratorTest {
         assertThat(it.next(), is(8));
     }
 
+    @Test
+    public void onlyOneIsEvenInEnd() {
+        it = new EvenNumbersIterator(new int[]{1, 3, 5, 7, 9, 11, 14});
+        assertThat(it.hasNext(), is(true));
+        assertThat(it.next(), is(14));
+    }
+
 }
