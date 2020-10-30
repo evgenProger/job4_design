@@ -16,8 +16,6 @@ public class EvenNumbersIterator implements Iterator<Integer> {
         while (point < result.length && result[point] % 2 != 0) {
             point++;
         }
-
-
         return point < result.length;
     }
 
