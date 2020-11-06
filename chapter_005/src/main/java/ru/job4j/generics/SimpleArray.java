@@ -11,12 +11,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public SimpleArray() {
         int capacity = 10;
-        element = (T[]) new Object[capacity];
-    }
-
-    public SimpleArray(T[] element) {
-        this.element = element;
-        size++;
+        this.element = (T[]) new Object[capacity];
     }
 
     public void add(T model) {
@@ -24,12 +19,13 @@ public class SimpleArray<T> implements Iterable<T> {
         size++;
 
     }
-    public void set(int index, T model)  {
+
+    public void set(int index, T model) {
         Objects.checkIndex(index, size);
         element[index] = model;
     }
 
-    public void remove(int index)  {
+    public void remove(int index) {
         Objects.checkIndex(index, size);
         System.arraycopy(element, index + 1, element, index, size - 1);
         size--;
@@ -42,13 +38,12 @@ public class SimpleArray<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        Iterator<T> it = new Iterator<T>() {
+        Iterator<T> it = new Iterator<>() {
             private int currentIndex = 0;
 
             @Override
             public boolean hasNext() {
-                return currentIndex < size && element[currentIndex] != null;
-            }
+                return currentIndex < size; }
 
             @Override
             public T next() {
@@ -57,7 +52,6 @@ public class SimpleArray<T> implements Iterable<T> {
                 }
                 return element[currentIndex++];
             }
-
         };
         return it;
     }
