@@ -3,7 +3,7 @@ package ru.job4j.generics;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class MemStore<T extends Base> implements Store {
+public final class MemStore<T extends Base> implements Store<T> {
 
     private final List<T> mem = new ArrayList<>();
 
@@ -17,8 +17,9 @@ public final class MemStore<T extends Base> implements Store {
         boolean result = false;
         for (int  i = 0;  i < mem.size(); i++) {
             if (mem.get(i).getId().equals(id)) {
-                mem.add(i, (T) model);
+                mem.set(i, (T) model);
                 result = true;
+                break;
             }
         }
         return result;
@@ -30,15 +31,16 @@ public final class MemStore<T extends Base> implements Store {
             if (mem.get(i).getId().equals(id)) {
                 mem.remove(i);
                 result = true;
+                break;
             }
         }
         return result;
     }
 
     @Override
-    public Base findById(String id) {
-        Base base = null;
-        for (Base b: mem) {
+    public T findById(String id) {
+        T base = null;
+        for (T b: mem) {
             if (b.getId().equals(id)) {
                 base = b;
                 break;
