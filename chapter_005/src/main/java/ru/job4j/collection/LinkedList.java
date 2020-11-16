@@ -50,7 +50,7 @@ public class LinkedList<E> implements Iterable<E> {
 
             @Override
             public boolean hasNext() {
-                return
+                return currentIndex < size;
             }
 
             @Override
