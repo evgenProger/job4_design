@@ -6,16 +6,10 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class LinkedList<E> implements Iterable<E> {
-    private   E[] elements;
     private int size;
     private Node<E> first;
     private Node<E> last;
     private int modCount;
-
-    public LinkedList() {
-        int capacity = 10;
-        this.elements = (E[]) new Object[capacity];
-    }
 
     public void add(E value) {
         final Node<E> l = last;
@@ -56,7 +50,7 @@ public class LinkedList<E> implements Iterable<E> {
 
             @Override
             public boolean hasNext() {
-                return currentIndex < size;
+                return
             }
 
             @Override
@@ -67,7 +61,7 @@ public class LinkedList<E> implements Iterable<E> {
                 if (expectCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return elements[currentIndex++];
+                return next();
             }
         };
         return it;
