@@ -21,13 +21,12 @@ public class LinkedList<E> implements Iterable<E> {
          else {
             l.next = newMode;
         }
-        elements[size] = (E) newMode;
         size++;
         modCount++;
     }
     public E get(int index) {
         Objects.checkIndex(index, size);
-        return elements[index];
+        return null;
     }
 
     private static class Node<E> {
