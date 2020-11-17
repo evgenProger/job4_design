@@ -34,6 +34,7 @@ public class LinkedList<E> implements Iterable<E> {
                 result = last.prev;
                 i++;
                 if (i == index) {
+                    result = result.prev;
                     break;
                 }
             }
