@@ -36,7 +36,6 @@ public class LinkedList<E> implements Iterable<E> {
                 if (i == index) {
                     break;
                 }
-
             }
         }
         else {
