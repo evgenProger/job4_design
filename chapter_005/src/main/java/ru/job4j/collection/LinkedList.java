@@ -69,23 +69,27 @@ public class LinkedList<E> implements Iterable<E> {
     @Override
     public Iterator<E> iterator() {
         Iterator<E> it = new Iterator<E>() {
+            private Node<E> current = first;
             private int expectCount = modCount;
             private int currentIndex = 0;
 
             @Override
             public boolean hasNext() {
-                return currentIndex < size;
+                return current != null;
             }
 
             @Override
             public E next() {
+                E value = current.value;
+                current = current.next;
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 if (expectCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return next();
+
+                return value;
             }
         };
         return it;
