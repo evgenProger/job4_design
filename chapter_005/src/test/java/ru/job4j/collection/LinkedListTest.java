@@ -13,5 +13,16 @@ public class LinkedListTest {
         String rs1 = list.get(0);
         assertThat(rs1, is("first"));
     }
+    @Test
+    public void whenAddSomeElementsThenGet() {
+        LinkedList<String> list = new LinkedList<>();
+        list.add("first");
+        list.add("two");
+        list.add("three");
+        list.add("four");
+        String rs1 = list.get(2);
+        assertThat(rs1, is("three"));
+    }
+
 
 }
