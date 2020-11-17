@@ -13,22 +13,45 @@ public class LinkedList<E> implements Iterable<E> {
 
     public void add(E value) {
         final Node<E> l = last;
-        final Node<E> newMode = new Node<>(first, value, l);
+        final Node<E> newMode = new Node<>(l, value, null);
         last = newMode;
         if (l == null) {
             first = newMode;
-        }
-         else {
+        } else {
             l.next = newMode;
         }
         size++;
         modCount++;
     }
+
     public E get(int index) {
         Objects.checkIndex(index, size);
-        return null;
-    }
+        int i = 0;
+        Node<E> result;
+        if (index > size / 2) {
+            result = last.prev;
+            while (result != null) {
+                result = last.prev;
+                i++;
+                if (i == index) {
+                    break;
+                }
 
+            }
+        }
+        else {
+            result = first.next;
+            while (result != null) {
+                result = first.next;
+                i++;
+                if(i == index) {
+                    break;
+                }
+            }
+        }
+        return (E) result;
+    }
+    
     private static class Node<E> {
         E value;
         Node<E> next;
@@ -39,7 +62,9 @@ public class LinkedList<E> implements Iterable<E> {
             this.next = next;
             this.prev = prev;
         }
+
     }
+
 
     @Override
     public Iterator<E> iterator() {
