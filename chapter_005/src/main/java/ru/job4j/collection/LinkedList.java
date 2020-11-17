@@ -29,8 +29,8 @@ public class LinkedList<E> implements Iterable<E> {
         int i = 0;
         Node<E> result;
         if (index > size / 2) {
-            result = last.prev;
-            while (result != null) {
+            result = last;
+            while (result.prev != null) {
                 result = last.prev;
                 i++;
                 if (i == index) {
@@ -39,8 +39,8 @@ public class LinkedList<E> implements Iterable<E> {
             }
         }
         else {
-            result = first.next;
-            while (result != null) {
+            result = first;
+            while (result.next != null) {
                 result = first.next;
                 i++;
                 if(i == index) {
@@ -48,7 +48,7 @@ public class LinkedList<E> implements Iterable<E> {
                 }
             }
         }
-        return (E) result;
+        return result.value;
     }
     
     private static class Node<E> {
