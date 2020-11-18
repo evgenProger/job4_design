@@ -27,32 +27,14 @@ public class LinkedList<E> implements Iterable<E> {
     public E get(int index) {
         Objects.checkIndex(index, size);
         int i = 0;
-        Node<E> result;
-        if (index > size / 2) {
-            result = last;
-            while (result.prev != null) {
-                result = last.prev;
-                i++;
-                if (i == index) {
-                    result = result.prev;
-                    break;
-                }
-            }
-        }
-        else {
-            result = first;
-            while (result.next != null) {
-                result = first.next;
-                i++;
-                if(i == index) {
-                    result = result.next;
-                    break;
-                }
-            }
+        Node<E> result = first;
+        while (result.next != null && i != index) {
+            result = result.next;
+            i++;
         }
         return result.value;
     }
-    
+
     private static class Node<E> {
         E value;
         Node<E> next;
@@ -66,13 +48,11 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
-
     @Override
     public Iterator<E> iterator() {
         Iterator<E> it = new Iterator<E>() {
             private Node<E> current = first;
             private int expectCount = modCount;
-            private int currentIndex = 0;
 
             @Override
             public boolean hasNext() {
@@ -81,15 +61,14 @@ public class LinkedList<E> implements Iterable<E> {
 
             @Override
             public E next() {
-                E value = current.value;
-                current = current.next;
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 if (expectCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-
+                E value = current.value;
+                current = current.next;
                 return value;
             }
         };

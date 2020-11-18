@@ -17,6 +17,7 @@ public class SimpleArrayTest {
         String rs1 = array.get(0);
         assertThat(rs1, is("first"));
     }
+
     @Test
     public void whenAddThenIterator() {
         SimpleArray<String> array = new SimpleArray<>();
@@ -24,17 +25,20 @@ public class SimpleArrayTest {
         String rs1 = array.iterator().next();
         assertThat(rs1, is("first"));
     }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenGetEmpty() {
         SimpleArray<String> array = new SimpleArray<>();
         array.get(0);
     }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenGetOutOfBoundsException() {
         SimpleArray<String> array = new SimpleArray<>();
         array.add("first");
         array.get(1);
     }
+
     @Test(expected = NoSuchElementException.class)
     public void whenGetEmptyFromIt() {
         SimpleArray<String> array = new SimpleArray<>();
