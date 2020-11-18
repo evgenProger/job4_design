@@ -26,11 +26,9 @@ public class LinkedList<E> implements Iterable<E> {
 
     public E get(int index) {
         Objects.checkIndex(index, size);
-        int i = 0;
         Node<E> result = first;
-        while (result.next != null && i != index) {
+        for (int i = 0; i < index; i++) {
             result = result.next;
-            i++;
         }
         return result.value;
     }
