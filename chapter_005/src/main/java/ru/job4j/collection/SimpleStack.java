@@ -2,15 +2,14 @@ package ru.job4j.collection;
 
 public class SimpleStack<T> {
     ForwardLinked<T> linked = new ForwardLinked<T>();
-    private Node<T> head;
 
     public void push(T value) {
-        head = new Node(value, head);
+        Node<T> node = new Node<>(value, null);
+        linked.add(node.value);
     }
 
     public T pop() {
-        T result = head.value;
-        head = head.next;
+        T result = linked.deleteLast();
         return result;
     }
 
@@ -23,5 +22,4 @@ public class SimpleStack<T> {
             this.next = next;
         }
     }
-
 }
