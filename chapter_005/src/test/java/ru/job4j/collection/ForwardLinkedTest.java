@@ -41,4 +41,14 @@ public class ForwardLinkedTest {
         int res = linked.deleteLast();
         assertThat(res, is(3));
     }
+
+    @Test
+    public void whenDeleteLastThenTrue() {
+        ForwardLinked<Integer> linked = new ForwardLinked<>();
+        linked.add(1);
+        linked.deleteLast();
+        assertTrue(linked.isEmpty());
+    }
+
+
 }
