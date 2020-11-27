@@ -16,7 +16,6 @@ public class SimpleStack<T> {
         return linked.isEmpty();
     }
 
-
     private static class Node<T> {
         T value;
         Node<T> next;
