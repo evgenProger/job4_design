@@ -40,6 +40,9 @@ public class ForwardLinked<T> implements Iterable<T> {
         preLast.next = null;
         return value;
     }
+    public boolean isEmpty() {
+        return head == null;
+    }
 
     private static class Node<T> {
         T value;
@@ -50,6 +53,7 @@ public class ForwardLinked<T> implements Iterable<T> {
             this.next = next;
         }
     }
+
 
     @Override
     public Iterator<T> iterator() {

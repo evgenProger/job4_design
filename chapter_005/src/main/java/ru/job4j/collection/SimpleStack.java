@@ -12,6 +12,10 @@ public class SimpleStack<T> {
         T result = linked.deleteLast();
         return result;
     }
+    public boolean isEmpty() {
+        return linked.isEmpty();
+    }
+
 
     private static class Node<T> {
         T value;
