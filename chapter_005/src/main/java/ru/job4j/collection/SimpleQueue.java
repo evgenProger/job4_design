@@ -12,7 +12,6 @@ public class SimpleQueue<T> {
         }
         return out.pop();
     }
-
     public void push(T value) {
         in.push(value);
     }
