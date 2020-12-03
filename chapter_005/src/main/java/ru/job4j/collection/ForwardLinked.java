@@ -80,7 +80,6 @@ public class ForwardLinked<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-
             Node<T> node = head;
 
             @Override
