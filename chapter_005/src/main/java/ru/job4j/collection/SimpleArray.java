@@ -50,4 +50,8 @@ public class SimpleArray<T> implements Iterable<T> {
         };
         return it;
     }
+
+    public int getSize() {
+        return size;
+    }
 }

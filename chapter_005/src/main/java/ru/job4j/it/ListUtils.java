@@ -22,35 +22,41 @@ public class ListUtils {
         Objects.checkIndex(index, list.size());
         ListIterator<T> i = list.listIterator();
         while (i.hasNext()) {
-            if(i.nextIndex() == index + 1) {
+            if(i.previousIndex() == index) {
                 i.add(value);
-                break;
             }
             i.next();
         }
     }
 
     public static <T> List<T> removeIf(List<T> list, Predicate<T> filter) {
-        for (T value : list) {
-            if (filter.test(value)) {
-                list.remove(value);
-                break;
+        ListIterator<T> i = list.listIterator();
+        while (i.hasNext()) {
+            if (filter.test(i.next())) {
+                i.remove();
             }
         }
         return list;
     }
 
     public static <T> List<T> replaceIf(List<T> list, Predicate<T> filter, T value) {
-        for (T obj: list) {
-            if (filter.test(obj)) {
-                list.set(list.indexOf(obj), value);
-                break;
+        ListIterator<T> i = list.listIterator();
+        while (i.hasNext()) {
+            if (filter.test(i.next())) {
+                i.set(value);
             }
         }
         return list;
     }
     public static <T> List<T> removeAll(List<T> list, List<T> elements) {
-        for (T e: elements) {
+        ListIterator<T> i = elements.listIterator();
+        ListIterator<T> j = list.listIterator();
+        while (i.hasNext()) {
+            if (list.contains(i.next())) {
+                list.remove(i.next());
+            }
+        }
+      /*  for (T e: elements) {
             for (T l: list) {
                 if (e == l) {
                     list.remove(l);
@@ -58,6 +64,7 @@ public class ListUtils {
                 }
             }
         }
+       */
         return list;
     }
  }
