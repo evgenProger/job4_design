@@ -12,7 +12,7 @@ public class SimpleSet<T> implements Iterable<T> {
     public  void add(T value) {
         boolean flag = true;
         for (T t: array) {
-            if (t == value) {
+            if (t.equals(value)) {
                 flag = false;
                 break;
             }
