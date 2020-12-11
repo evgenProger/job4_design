@@ -10,6 +10,12 @@ public class SimpleSet<T> implements Iterable<T> {
     }
 
     public  void add(T value) {
+
+        if (dublicate(value)) {
+            array.add(value);
+        }
+    }
+    public boolean dublicate(T value) {
         boolean flag = true;
         for (T t: array) {
             if (t.equals(value)) {
@@ -17,9 +23,7 @@ public class SimpleSet<T> implements Iterable<T> {
                 break;
             }
         }
-        if (flag) {
-            array.add(value);
-        }
+        return flag;
     }
 
     public T get(int index) {
