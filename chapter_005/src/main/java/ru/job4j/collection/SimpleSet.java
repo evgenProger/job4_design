@@ -10,7 +10,6 @@ public class SimpleSet<T> implements Iterable<T> {
     }
 
     public  void add(T value) {
-
         if (dublicate(value)) {
             array.add(value);
         }
