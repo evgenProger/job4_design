@@ -1,9 +1,9 @@
 package ru.job4j.collection;
-
 import java.util.Iterator;
+import java.util.Objects;
 
 public class SimpleSet<T> implements Iterable<T> {
-    private SimpleArray<T> array = new SimpleArray<>();
+    private SimpleArray<T> array = new SimpleArray<T>();
 
     public SimpleArray<T> getArray() {
         return array;
@@ -17,7 +17,7 @@ public class SimpleSet<T> implements Iterable<T> {
     public boolean dublicate(T value) {
         boolean flag = true;
         for (T t: array) {
-            if (t.equals(value)) {
+            if (Objects.equals(t, value)) {
                 flag = false;
                 break;
             }
@@ -33,6 +33,4 @@ public class SimpleSet<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         return array.iterator();
     }
-
-
 }
