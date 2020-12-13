@@ -12,9 +12,7 @@ public class SimpleSetTest {
     @Test
     public void whenAddThenGet() {
         SimpleSet<String> array = new SimpleSet<>();
-        array.add("first");
-        String rs1 = array.get(0);
-        assertThat(rs1, is("first"));
+        assertTrue(array.add("first000"));
     }
 
     @Test
@@ -22,7 +20,7 @@ public class SimpleSetTest {
         SimpleSet<String> array = new SimpleSet<>();
         array.add("first");
         array.add("two");
-        array.add("first");
-        assertThat(2, Is.is(array.getArray().getSize()));
+        boolean res =  array.add("first");
+        assertThat(res, is(false));
     }
 }

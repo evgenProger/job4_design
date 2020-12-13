@@ -5,14 +5,13 @@ import java.util.Objects;
 public class SimpleSet<T> implements Iterable<T> {
     private SimpleArray<T> array = new SimpleArray<T>();
 
-    public SimpleArray<T> getArray() {
-        return array;
-    }
-
-    public  void add(T value) {
+    public  boolean add(T value) {
+        boolean res = false;
         if (dublicate(value)) {
+            res = true;
             array.add(value);
         }
+        return res;
     }
     public boolean dublicate(T value) {
         boolean flag = true;
@@ -23,10 +22,6 @@ public class SimpleSet<T> implements Iterable<T> {
             }
         }
         return flag;
-    }
-
-    public T get(int index) {
-        return array.get(index) ;
     }
 
     @Override
