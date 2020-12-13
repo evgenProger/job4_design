@@ -25,7 +25,6 @@ public class SimpleArray<T> implements Iterable<T> {
        size++;
     }
 
-
     @Override
     public Iterator<T> iterator() {
         Iterator<T> it = new Iterator<T>() {
@@ -49,9 +48,5 @@ public class SimpleArray<T> implements Iterable<T> {
             }
         };
         return it;
-    }
-
-    public int getSize() {
-        return size;
     }
 }
