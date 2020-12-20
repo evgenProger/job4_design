@@ -18,12 +18,22 @@ public class User1 {
 
     @Override
     public int hashCode() {
-        int result;
-        result = 37 * children;
-        result = result * name.hashCode();
-        result = result * birthday.hashCode();
+        int result = 17;
+        result = 37 * result + children;
+        result =  37 * result + name.hashCode();
+        result = 37 * result + birthday.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "User1{" +
+                "name='" + name + '\'' +
+                ", children=" + children +
+                ", birthday=" + birthday +
+                '}';
+    }
+
 
     public static class Car {
         String color;
