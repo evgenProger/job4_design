@@ -1,9 +1,6 @@
 package ru.job4j.collection;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class User1 {
     String name;
@@ -15,14 +12,18 @@ public class User1 {
         this.children = children;
         this.birthday = birthday;
     }
-
     @Override
-    public int hashCode() {
-        int result = 17;
-        result = 37 * result + children;
-        result =  37 * result + name.hashCode();
-        result = 37 * result + birthday.hashCode();
-        return result;
+    public boolean equals(Object obj) {
+        if(this == obj) {
+            return true;
+        }
+        if(obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        User1 user1 = (User1) obj;
+        return children == user1.children
+                && Objects.equals(name, user1.name)
+                && Objects.equals(birthday, user1.birthday);
     }
 
     @Override
