@@ -12,6 +12,16 @@ public class User1 {
         this.children = children;
         this.birthday = birthday;
     }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 37 * result + children;
+        result = 37 * result + name.hashCode();
+        result = 37 * result + birthday.hashCode();
+        return result;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(this == obj) {
