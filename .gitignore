@@ -10,7 +10,7 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-target
+../../../../target
 
 # Package Files #
 *.jar
@@ -26,3 +26,8 @@ hs_err_pid*
 
 .idea
 *.iml
+.project
+.classpath
+target
+.settings
+bin

@@ -1,4 +1,4 @@
-package ru.job4j.generics;
+package ru.job4j.generics.store;
 
 public class RollStore implements Store<Roll> {
     private final Store<Roll> store = new MemStore<>();

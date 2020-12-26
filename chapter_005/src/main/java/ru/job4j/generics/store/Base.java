@@ -1,9 +1,9 @@
-package ru.job4j.generics;
+package ru.job4j.generics.store;
 
  public abstract class Base {
      private final String id;
 
-      protected  Base(String id) {
+      public Base(String id) {
          this.id = id;
      }
 
