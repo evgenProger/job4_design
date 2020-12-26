@@ -59,6 +59,7 @@ public class User1 {
         users.put(user1, car1);
         users.put(user2, car2);
         System.out.println(users);
+        System.out.println(users.size());
 
     }
 }
