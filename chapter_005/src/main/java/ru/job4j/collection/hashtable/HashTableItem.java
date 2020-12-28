@@ -1,5 +1,7 @@
 package ru.job4j.collection.hashtable;
 
+import java.util.Objects;
+
 public class HashTableItem<K, V> {
     public K key;
 
@@ -10,12 +12,26 @@ public class HashTableItem<K, V> {
         this.value = value;
     }
 
-    public K getKey() {
-        return key;
+    @Override
+    public int hashCode() {
+        return key.hashCode();
     }
 
-    public void setKey(K key) {
-        this.key = key;
+    @Override
+    public boolean equals(Object obj) {
+        if(this.key == obj) {
+            return true;
+        }
+        if(obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        K k = (K) obj;
+        return Objects.equals(k, key);
+    }
+
+
+    public K getKey() {
+        return key;
     }
 
     public V getValue() {
