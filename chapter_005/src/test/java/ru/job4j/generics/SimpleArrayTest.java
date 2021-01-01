@@ -9,10 +9,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class SimpleArrayTest {
-    @Before
-    public static void setSimpleArray() {
-        SimpleArray<String> array = new SimpleArray<String>();
-    }
 
     @Test
     public void whenAddThenGet() {
