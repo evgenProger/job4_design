@@ -99,6 +99,5 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
 
         };
         return it;
-
     }
 }
