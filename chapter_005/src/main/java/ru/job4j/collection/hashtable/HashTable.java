@@ -72,6 +72,7 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
             array[index] = null;
             flag = true;
             size--;
+            modcount--;
         }
         return flag;
      }
