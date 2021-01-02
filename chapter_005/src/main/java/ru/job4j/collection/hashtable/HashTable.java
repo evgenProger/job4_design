@@ -31,7 +31,6 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
 
      public boolean insert(K key, V value) {
          boolean res = false;
-         HashTableItem<K, V> tableItem = new HashTableItem<>(key, value);
         int index = key.hashCode() % capacity;
         if (array[index].key.equals(key)) {
             array[index].value = value;
@@ -41,7 +40,7 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
         return res;
      }
 
-     private double getLOAD_FACTOR() {
+    private double getLOAD_FACTOR() {
         return size / capacity;
     }
 
@@ -106,9 +105,7 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
                     throw new ConcurrentModificationException();
                 }
                 return array[currentIndex++];
-
             }
-
         };
         return it;
     }

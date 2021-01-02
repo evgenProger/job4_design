@@ -18,7 +18,7 @@ public class LinkedList<E> implements Iterable<E> {
         if (l == null) {
             first = newMode;
         } else {
-            l.next = newMode;
+           l.next = newMode;
         }
         size++;
         modCount++;
