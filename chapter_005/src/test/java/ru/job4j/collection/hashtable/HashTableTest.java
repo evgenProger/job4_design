@@ -52,7 +52,7 @@ public class HashTableTest  {
    @Test
    public void whenInsertThenIterator() {
       HashTable<String, Integer> array = new HashTable<>(16);
-      array.insert("Evgeny", 25);
+      array.add("Evgeny", 25);
       HashTableItem<String, Integer> res = array.iterator().next();
       assertThat(res.value, is(25));
 

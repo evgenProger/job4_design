@@ -93,7 +93,7 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
                     currentIndex++;
                 }
                 count++;
-                return count < size;
+                return count <= size;
             }
 
             @Override
