@@ -72,7 +72,7 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
             array[index] = null;
             flag = true;
             size--;
-            modcount--;
+            modcount++;
         }
         return flag;
      }
@@ -90,9 +90,10 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
 
             @Override
             public boolean hasNext() {
-                if (array[currentIndex] != null) {
-                    count++;
+                while(array[currentIndex] == null) {
+                    currentIndex++;
                 }
+                count++;
                 return count < capacity;
             }
 
