@@ -89,11 +89,8 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
 
             @Override
             public boolean hasNext() {
-                while(array[currentIndex] == null) {
-                    currentIndex++;
-                }
-                count++;
-                return count <= size;
+
+                return count < size;
             }
 
             @Override
@@ -104,6 +101,13 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
                 if (expectedModCount != modcount) {
                     throw new ConcurrentModificationException();
                 }
+                while(currentIndex < capacity) {
+                    if(array[currentIndex] != null) {
+                        break;
+                    }
+                    currentIndex++;
+                }
+                count++;
                 return array[currentIndex++];
             }
         };
