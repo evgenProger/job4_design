@@ -14,28 +14,23 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
         array =  new HashTableItem[capacity];
     }
 
-    public boolean add(K key, V value) {
-        boolean res = false;
-        if(getLOAD_FACTOR() >= LOAD_FACTOR) {
-            this.resize();
-        }
-        int index = key.hashCode() % capacity;
-        if (array[index] == null) {
+     public boolean insert(K key, V value) {
+         boolean res = false;
+         if(getLOAD_FACTOR() >= LOAD_FACTOR) {
+             this.resize();
+         }
+        int index = Math.abs(key.hashCode()) % capacity;
+        if(array[index] == null) {
             array[index] = new HashTableItem(key, value);
             size++;
             modcount++;
             res = true;
         }
-        return res;
-    }
-
-     public boolean insert(K key, V value) {
-         boolean res = false;
-        int index = key.hashCode() % capacity;
-        if (array[index].key.equals(key)) {
-            array[index].value = value;
-            res = true;
-
+        else {
+            if (array[index].key.equals(key)) {
+                array[index].value = value;
+                res = true;
+            }
         }
         return res;
      }
@@ -51,23 +46,24 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
         array = new HashTableItem[capacity];
         for (var item: oldArray) {
             if (item != null) {
-              this.add((K) item.key, (V) item.value);
+              this.insert((K) item.key, (V) item.value);
             }
         }
     }
 
      public V get(K key) {
+        V value = null;
         int index = key.hashCode() % capacity;
-        if (array[index] != null) {
-            return (V) array[index].getValue();
+        if (array[index] != null && array[index].key.equals(key)) {
+             value = (V) array[index].value;
         }
-        return null;
+        return value;
      }
 
      public boolean delete(K key) {
         boolean flag = false;
         int index = key.hashCode() % capacity;
-        if (array[index] != null) {
+        if (array[index] != null && array[index].key.equals(key)) {
             array[index] = null;
             flag = true;
             size--;
