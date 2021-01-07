@@ -22,7 +22,6 @@ public class Tree<E> implements SimpleTree<E> {
             for (Node<E> c : current.get().children) {
                 if (!c.value.equals(child)) {
                     rs = true;
-                    continue;
                 } else {
                     break;
                 }
