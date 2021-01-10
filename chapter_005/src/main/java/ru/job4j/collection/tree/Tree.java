@@ -15,19 +15,13 @@ public class Tree<E> implements SimpleTree<E> {
     public boolean added(E parent, E child) {
         boolean rs = false;
         Optional<Node<E>> current = this.findBy(parent);
-        if(current.get().children.size() == 0) {
+        Optional<Node<E>> ch = this.findBy(child);
+        if (ch.isEmpty()) {
             current.get().children.add(new Node<>(child));
-            return true;
-        } else {
-            for (Node<E> c : current.get().children) {
-                if (!c.value.equals(child)) {
-                    rs = true;
-                } else {
-                    break;
-                }
-            }
-       }
-        return rs ? current.get().children.add(new Node<>(child)) : false;
+            rs = true;
+        }
+
+        return rs;
     }
 
     @Override
