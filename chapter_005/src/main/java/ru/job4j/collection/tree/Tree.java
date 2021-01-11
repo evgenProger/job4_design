@@ -16,11 +16,10 @@ public class Tree<E> implements SimpleTree<E> {
         boolean rs = false;
         Optional<Node<E>> current = this.findBy(parent);
         Optional<Node<E>> ch = this.findBy(child);
-        if (ch.isEmpty()) {
+        if (ch.isEmpty() && current.isPresent()) {
             current.get().children.add(new Node<>(child));
             rs = true;
         }
-
         return rs;
     }
 
