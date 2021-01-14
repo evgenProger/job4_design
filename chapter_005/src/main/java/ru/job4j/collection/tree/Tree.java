@@ -38,6 +38,7 @@ public class Tree<E> implements SimpleTree<E> {
                 rs = false;
                 break;
             }
+            data.addAll(current.children);
         }
         return rs;
     }
