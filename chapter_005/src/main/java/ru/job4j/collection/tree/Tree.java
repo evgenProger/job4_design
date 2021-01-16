@@ -31,7 +31,7 @@ public class Tree<E> implements SimpleTree<E> {
         data.offer(root);
         while (!data.isEmpty()) {
             current = data.poll();
-            if (predicate.test(value)) {
+            if (predicate.test(value))) {
                 rs = true;
                 break;
             }
@@ -57,7 +57,7 @@ public class Tree<E> implements SimpleTree<E> {
             }
             data.addAll(current.children);
         }
-       */ if (pre, current.children.size()) {
+       */ if (findByPredicate(pre, current.children.size()) {
            rs = false;
         }
         return rs;
