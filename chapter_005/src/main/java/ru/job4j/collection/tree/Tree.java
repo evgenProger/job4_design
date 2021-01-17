@@ -44,21 +44,6 @@ public class Tree<E> implements SimpleTree<E> {
     }
     @Override
     public Optional<Node<E>> findBy(E value) {
-       /* Optional<Node<E>> rs1 = Optional.empty();
-        Node<E> current;
-        Queue<Node<E>> data = new LinkedList<>();
-        data.offer(this.root);
-        while (!data.isEmpty()) {
-            current = data.poll();
-            if (current.value.equals(value)) {
-                rs1 = Optional.of(current);
-                break;
-            }
-            data.addAll(current.children);
-
-
-        }
-        */
         return findByPredicate(node -> node.value.equals(value));
     }
 }
