@@ -14,7 +14,6 @@ public class Email {
         List<String> my_list = new ArrayList<>();
         String user = null;
         Set<String> emails = new HashSet<>();
-        int p = 0;
         List<String> next = new ArrayList<>();
         for (int i = 0; i < users.size(); i++) {
             emails.addAll(email_accounts.get(users.get(i)));
@@ -29,6 +28,7 @@ public class Email {
                 }
                 next.removeAll(next);
             }
+            res.put(user, (List<String>) emails);
             emails.removeAll(emails);
         }
         return (HashMap<String, List<String>>) res;
