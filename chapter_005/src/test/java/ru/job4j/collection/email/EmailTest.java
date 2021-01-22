@@ -7,31 +7,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class EmailTest {
     @Test
     public void whenSomeUsersHaveSameEmailThenUnion() {
-        User user1 = new User("Evgeny", 25);
-        User user2 = new User("Vika", 26);
-        User user3 = new User("Bob", 35);
-        List<Email.Emails> emails_user1 = new ArrayList<>();
-        List<Email.Emails> emails_user2 = new ArrayList<>();
-        List<Email.Emails> emails_user3 = new ArrayList<>();
-        Map<User, Email.Emails> accounts = new HashMap<>();
-        emails_user1.add(new Email.Emails("xxx@ya.ru"));
-        emails_user1.add(new Email.Emails("foo@gmail.com"));
-        emails_user1.add(new Email.Emails("lol@mail.ru"));
-        emails_user2.add(new Email.Emails("foo@gmail.com"));
-        emails_user2.add(new Email.Emails("ups@pisemnet.net"));
-        emails_user3.add(new Email.Emails("xyz@pisem.net"));
-        emails_user3.add(new Email.Emails("vasya@pupkin.com"));
-        accounts.put(user1, (Email.Emails) emails_user1);
-        accounts.put(user2, (Email.Emails) emails_user2);
-        accounts.put(user3, (Email.Emails) emails_user3);
-
-
-
+        List<String> emails_Evgeny = new ArrayList<>();
+        List<String> emails_Viktoria = new ArrayList<>();
+        List<String> emails_Ekaterina = new ArrayList<>();
+        List<String> emails_Masha = new ArrayList<>();
+        emails_Evgeny.add("xxx@ya.ru");
+        emails_Evgeny.add("foo@gmail.com");
+        emails_Evgeny.add("lol@mail.ru");
+        emails_Viktoria.add("foo@gmail.com");
+        emails_Viktoria.add("ups@pisem.net");
+        emails_Ekaterina.add("xyz@pisem.net");
+        emails_Ekaterina.add("vasya@pupkin.com");
+        emails_Masha.add("ups@pisem.net");
+        emails_Masha.add("aaa@bbb.ru");
+        HashMap<String, List<String>> emails_account = new HashMap<>();
+        emails_account.put("Evgeny",  emails_Evgeny);
+        emails_account.put("Viktoria",  emails_Viktoria);
+        emails_account.put("Ekaterina", emails_Ekaterina);
+        emails_account.put("Masha", emails_Masha);
+        Email email = new Email();
+        HashMap<String, List<String>> result = email.unionEmails(emails_account);
+        assertThat(result.get("Evgeny"), is(List.of("xxx@ya.ru", "foo@gmail.com" , "lol@mail.ru",
+                                                    "ups@pisem.net" , "aaa@bbb.ru")));
         }
 
 }
