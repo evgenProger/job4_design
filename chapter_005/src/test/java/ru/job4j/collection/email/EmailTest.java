@@ -33,7 +33,10 @@ public class EmailTest {
         emails_account.put("Masha", emails_Masha);
         Email email = new Email();
         HashMap<String, List<String>> result = email.unionEmails(emails_account);
-        assertThat(result.get("Evgeny"), is(List.of("xxx@ya.ru", "foo@gmail.com" , "lol@mail.ru",
+        List<String> users = new ArrayList<>();
+        users.addAll(result.keySet());
+        String user = users.get(0);
+        assertThat(result.get(user), is(List.of("xxx@ya.ru", "foo@gmail.com" , "lol@mail.ru",
                                                     "ups@pisem.net" , "aaa@bbb.ru")));
         }
 

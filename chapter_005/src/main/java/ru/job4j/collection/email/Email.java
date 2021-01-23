@@ -10,6 +10,7 @@ public class Email {
         Map<String, List<String>> res = new HashMap<>();
         List<String> result = new ArrayList<>();
         List<String> users = new ArrayList<>();
+        Boolean flag = false;
         users.addAll(email_accounts.keySet());
         int p = 0;
         String user = null;
@@ -25,6 +26,7 @@ public class Email {
                         if (emails.contains(next.get(m))) {
                             emails.addAll(next);
                             user = users.get(i);
+                            flag = true;
                             break;
                         }
 
@@ -33,9 +35,13 @@ public class Email {
                 }
                 p++;
             }
-            result.addAll(emails);
+            p = 0;
+            if (flag) {
+                result.addAll(emails);
+                res.put(user, result);
+            }
+            flag = false;
             emails.removeAll(emails);
-            res.put(user, result);
         }
         return (HashMap<String, List<String>>) res;
     }
