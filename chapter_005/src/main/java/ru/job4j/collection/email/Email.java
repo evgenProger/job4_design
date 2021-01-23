@@ -16,12 +16,12 @@ public class Email {
         String user = null;
         Set<String> emails = new HashSet<>();
         List<String> next = new ArrayList<>();
-        for (int i = 0; i < users.size(); i++) {
+        int i = 0;
+        while (i < users.size()) {
             emails.addAll(email_accounts.get(users.get(i)));
             while (p < 2) {
                 for (int j = i + 1; j < users.size(); j++) {
                     next.addAll(email_accounts.get(users.get(j)));
-
                     for (int m = 0; m < next.size(); m++) {
                         if (emails.contains(next.get(m))) {
                             emails.addAll(next);
