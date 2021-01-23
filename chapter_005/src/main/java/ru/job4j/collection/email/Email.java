@@ -12,28 +12,34 @@ public class Email {
         List<String> users = new ArrayList<>();
         users.addAll(email_accounts.keySet());
         List<String> my_list = new ArrayList<>();
+        int p = 0;
         String user = null;
         Set<String> emails = new HashSet<>();
         List<String> next = new ArrayList<>();
         for (int i = 0; i < users.size(); i++) {
             emails.addAll(email_accounts.get(users.get(i)));
-            for (int j = i + 1; j < users.size(); j++) {
-                next.addAll(email_accounts.get(users.get(j)));
-                for (int m = 0; m < next.size(); m++) {
-                    if (emails.contains(next.get(m))) {
-                        emails.addAll(next);
-                        user = users.get(i);
-                        break;
+            while (p < 2) {
+                for (int j = i + 1; j < users.size(); j++) {
+                    next.addAll(email_accounts.get(users.get(j)));
+
+                    for (int m = 0; m < next.size(); m++) {
+                        if (emails.contains(next.get(m))) {
+                            emails.addAll(next);
+                            user = users.get(i);
+                            break;
+                        }
+
                     }
+                    next.removeAll(next);
                 }
-                next.removeAll(next);
+                p++;
             }
-            res.put(user, (List<String>) emails);
             emails.removeAll(emails);
         }
         return (HashMap<String, List<String>>) res;
-
-
     }
 
+
 }
+
+
