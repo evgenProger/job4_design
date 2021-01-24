@@ -15,13 +15,14 @@ public class Email {
         List<String> next = new ArrayList<>();
         List<String> previous = new ArrayList<>();
         Boolean flag = false;
+        int m = 1;
         int i = 0;
         int j= 0;
         int k = 0;
         while (i < users.size() - 1) {
             previous = email_accounts.get(users.get(i));
             while (j < previous.size()) {
-                next = email_accounts.get(users.get(i + 1));
+                next = email_accounts.get(users.get(m));
                 while (k < next.size()) {
                     if (previous.get(j).equals(next.get(k))) {
                         emails.addAll(next);
@@ -34,7 +35,10 @@ public class Email {
             }
             k = 0;
             j = 0;
-            i++;
+            m++;
+            if (m == users.size()) {
+                i++;
+            }
         }
 
 
