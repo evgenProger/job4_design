@@ -28,7 +28,9 @@ public class Email {
                         emails.addAll(previous);
                         break;
                     }
+                    k++;
                 }
+               j++;
             }
             i++;
         }
