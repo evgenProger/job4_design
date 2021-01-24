@@ -7,39 +7,35 @@ public class Email {
 
 
     public HashMap<String, List<String>> unionEmails(HashMap<String, List<String>> email_accounts) {
-        Map<String, List<String>> res = new HashMap<>();
+        Map<String, Set<String>> res = new HashMap<>();
         List<String> users = new ArrayList<>();
         users.addAll(email_accounts.keySet());
         String user = null;
         Set<String> emails = new HashSet<>();
         List<String> next = new ArrayList<>();
         List<String> previous = new ArrayList<>();
+        List<String> total = new ArrayList<>();
         Boolean flag = false;
-        int m = 1;
         int i = 0;
-        int j= 0;
+        int j= 1;
         int k = 0;
-        while (i < users.size() - 1) {
-            previous = email_accounts.get(users.get(i));
-            while (j < previous.size()) {
-                next = email_accounts.get(users.get(m));
-                while (k < next.size()) {
-                    if (previous.get(j).equals(next.get(k))) {
-                        emails.addAll(next);
-                        emails.addAll(previous);
-                        break;
+        user = users.get(0);
+        res.put(user, (Set<String>) email_accounts.get(users.get(i)));
+        while (i < users.size()) {
+            previous.addAll(res.get(user));
+            next.addAll(email_accounts.get(users.get(j)));
+            for (int m = 0; m < previous.size(); m++) {
+                for (int n = 0; n < next.size(); n++) {
+                    if (previous.get(m).equals(next.get(n))) {
+                        res.put(user, (Set<String>) next);
                     }
-                    k++;
                 }
-               j++;
-            }
-            k = 0;
-            j = 0;
-            m++;
-            if (m == users.size()) {
-                i++;
             }
         }
+
+
+
+
 
 
 
