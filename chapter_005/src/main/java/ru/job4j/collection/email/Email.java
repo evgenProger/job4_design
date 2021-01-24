@@ -20,12 +20,14 @@ public class Email {
         int k = 0;
         while (i < users.size() - 1) {
             previous = email_accounts.get(users.get(i));
-            while (j < email_accounts.get(users.get(i)).size()) {
+            while (j < previous.size()) {
                 next = email_accounts.get(users.get(i + 1));
-                if (next.get(j).contains((CharSequence) previous)) {
-                    emails.addAll(previous);
-                    emails.addAll(next);
-                    user = users.get(i + 1);
+                while (k < next.size()) {
+                    if (previous.get(j).equals(next.get(k))) {
+                        emails.addAll(next);
+                        emails.addAll(previous);
+                        break;
+                    }
                 }
             }
             i++;
