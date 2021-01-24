@@ -32,6 +32,8 @@ public class Email {
                 }
                j++;
             }
+            k = 0;
+            j = 0;
             i++;
         }
 
