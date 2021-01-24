@@ -8,16 +8,53 @@ public class Email {
 
     public HashMap<String, List<String>> unionEmails(HashMap<String, List<String>> email_accounts) {
         Map<String, List<String>> res = new HashMap<>();
-        List<String> result = new ArrayList<>();
         List<String> users = new ArrayList<>();
-        Boolean flag = false;
         users.addAll(email_accounts.keySet());
-        int p = 0;
         String user = null;
         Set<String> emails = new HashSet<>();
         List<String> next = new ArrayList<>();
+        List<String> previous = new ArrayList<>();
+        Boolean flag = false;
         int i = 0;
-        while (i < users.size()) {
+        int j= 0;
+        int k = 0;
+        while (i < users.size() - 1) {
+            previous = email_accounts.get(users.get(i));
+            while (j < email_accounts.get(users.get(i)).size()) {
+                next = email_accounts.get(users.get(i + 1));
+                if (next.get(j).contains((CharSequence) previous)) {
+                    emails.addAll(previous);
+                    emails.addAll(next);
+                }
+            }
+            i++;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*  while (i < users.size()) {
             emails.addAll(email_accounts.get(users.get(i)));
             while (p < 2) {
                 for (int j = i + 1; j < users.size(); j++) {
@@ -39,10 +76,13 @@ public class Email {
             if (flag) {
                 result.addAll(emails);
                 res.put(user, result);
+
             }
             flag = false;
+            i++;
             emails.removeAll(emails);
         }
+       */
         return (HashMap<String, List<String>>) res;
     }
 
