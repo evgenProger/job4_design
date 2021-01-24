@@ -25,6 +25,7 @@ public class Email {
                 if (next.get(j).contains((CharSequence) previous)) {
                     emails.addAll(previous);
                     emails.addAll(next);
+                    user = users.get(i + 1);
                 }
             }
             i++;
