@@ -19,10 +19,10 @@ public class Email {
         int i = 0;
         int j = 1;
         int k = 0;
+        user = users.get(0);
+        res.put(user, (Set<String>) email_accounts.get(users.get(0)));
 
         while (i < users.size()) {
-            user = users.get(i);
-            res.put(user, (Set<String>) email_accounts.get(users.get(i)));
             previous.addAll(res.get(user));
             next.addAll(email_accounts.get(users.get(j)));
             for (int m = 0; m < previous.size(); m++) {
@@ -30,12 +30,13 @@ public class Email {
                     if (previous.get(m).equals(next.get(n))) {
                         res.get(user).addAll(next);
                         i++;
+                        j++;
                         flag = true;
 
                         break;
                     }
                     else {
-
+                        user =
                     }
                 }
                 if (flag) {
