@@ -7,7 +7,7 @@ import java.util.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
-public class EmailTest {
+public class EmailSolved2Test {
     @Test
     public void whenSomeUsersHaveSameEmailThenNewSize() {
         Set<String> emails_Evgeny = new HashSet();
@@ -29,8 +29,7 @@ public class EmailTest {
         emails_account.put("Ekaterina", emails_Ekaterina);
         emails_account.put("Masha", emails_Masha);
         System.out.println("Входные данные" + emails_account);
-        Email email = new Email();
-        Map<String, Set<String>> result = email.unionEmails(emails_account);
+        Map<String, Set<String>> result = EmailSolved2.union(emails_account);
         System.out.println("Выходные данные" + result);
         List<String> users = new ArrayList<>();
         users.addAll(result.keySet());
