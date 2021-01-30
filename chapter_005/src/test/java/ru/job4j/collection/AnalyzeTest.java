@@ -14,7 +14,6 @@ public class AnalyzeTest {
      private List<Analyze.User> previous = new ArrayList();
     private List<Analyze.User> changed = new ArrayList<>();
 
-
     @Before
     public void initLists() {
         previous.add(new Analyze.User(25, "Evgeny"));
@@ -36,10 +35,10 @@ public class AnalyzeTest {
     public void whenChangedThenNewList() {
         Analyze.Info info;
         Analyze analyze = new Analyze();
+        previous.add(new Analyze.User(27, "Mike"));
         changed.set(0, new Analyze.User(25, "Bob"));
         changed.set(1, new Analyze.User(26, "Kate"));
         info = analyze.diff(previous, changed);
         assertThat(info.changed, is(2));
     }
-
 }

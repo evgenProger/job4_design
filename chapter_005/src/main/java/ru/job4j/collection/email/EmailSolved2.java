@@ -4,36 +4,38 @@ import java.util.*;
 
 public class EmailSolved2 {
     public static   Map<String, Set<String>> union(Map<String, Set<String>> email_accounts) {
-        Map<String, Set<String>> res = new LinkedHashMap<>();
-        for (Map.Entry<String, Set<String>> accounts: email_accounts.entrySet()) {
-            String unionUser = null;
-            Set<String> unionEmails = null;
-            for (Map.Entry<String, Set<String>> accounts_res: res.entrySet()) {
-                for (String mail: accounts.getValue()) {
-                    if (accounts_res.getValue().contains(mail)) {
-                        unionUser = accounts_res.getKey();
-                        unionEmails = email_accounts.get(accounts.getKey());
-                        break;
-                    }
-                }
-                if (unionUser != null) {
+        Map<String, Set<String>> res  = new LinkedHashMap<>();
+        Map<String, String> temp = new HashMap<>();
+        String name;
+        Set<String> mails;
+        for (Map.Entry<String, Set<String>> pair: email_accounts.entrySet()) {
+            mails = pair.getValue();
+            name = pair.getKey();
+            for (String m: mails) {
+                if (temp.containsKey(m)) {
+                    name = temp.get(m);
                     break;
                 }
-
             }
-            if (unionUser != null) {
-                res.get(unionUser).addAll(unionEmails);
+            for (String mail : mails) {
+                temp.put(mail, name);
             }
-            else {
-                res.put(accounts.getKey(), new LinkedHashSet<>(accounts.getValue()));
-            }
-
+        }
+        for (Map.Entry<String, String> t: temp.entrySet()) {
+           if (res.containsKey(t.getValue())) {
+              res.get(t.getValue()).add(t.getKey());
+           }
+           else {
+               Set<String> newSet = new HashSet<>();
+               newSet.add(t.getKey());
+               res.put(t.getValue(), newSet);
+           }
         }
         return res;
     }
 
     public static Map<String, Set<String>> enterData() {
-        Map<String, Set<String>> accounts = new HashMap<>();
+        Map<String, Set<String>> accounts = new LinkedHashMap<>();
         Scanner in = new Scanner(System.in);
         String value = in.nextLine();
         while (!value.equals("end")) {

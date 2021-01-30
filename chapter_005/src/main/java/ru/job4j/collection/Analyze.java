@@ -2,23 +2,21 @@ package ru.job4j.collection;
 
 import ru.job4j.generics.store.User;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Analyze {
     public Info diff(List<User> previous, List<User> changed) {
+        Map<Integer, String> innovated;
         Info info = new Info();
         info.added = changed.size() - previous.size();
         info.deleted = previous.size() - changed.size();
-        for (int i = 0; i < previous.size(); i++) {
-            for (int j = 0; j < changed.size(); j++) {
-                if (!previous.get(i).name.equals(changed.get(j).name)) {
-                    if (previous.get(i).id == changed.get(j).id) {
-                        info.changed++;
-                    }
-                }
-            }
-        }
+        innovated = previous.stream().collect(Collectors.toMap(u -> u.id, u -> u.name));
+        info.changed = (int) changed.stream().filter(user -> !user.name.equals(innovated.get(user.id))).map(t -> 1).count();
+         // info.changed = users.size();
         return info;
     }
 
