@@ -1,6 +1,7 @@
 package ru.job4j.collection.email;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class EmailSolved2 {
     public static   Map<String, Set<String>> union(Map<String, Set<String>> email_accounts) {
@@ -22,18 +23,17 @@ public class EmailSolved2 {
             }
         }
         for (Map.Entry<String, String> t: temp.entrySet()) {
-           if (res.containsKey(t.getValue())) {
-              res.get(t.getValue()).add(t.getKey());
-           }
-           else {
-               Set<String> newSet = new HashSet<>();
-               newSet.add(t.getKey());
-               res.put(t.getValue(), newSet);
-           }
+            if (res.containsKey(t.getValue())) {
+                res.get(t.getValue()).add(t.getKey());
+            }
+            else {
+                Set<String> newSet = new HashSet<>();
+                newSet.add(t.getKey());
+                res.put(t.getValue(), newSet);
+            }
         }
         return res;
     }
-
     public static Map<String, Set<String>> enterData() {
         Map<String, Set<String>> accounts = new LinkedHashMap<>();
         Scanner in = new Scanner(System.in);
