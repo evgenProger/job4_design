@@ -10,13 +10,15 @@ import java.util.stream.Collectors;
 
 public class Analyze {
     public Info diff(List<User> previous, List<User> changed) {
-        Map<Integer, String> innovated;
+        Map<Integer, String> old;
+        old = previous.stream().collect(Collectors.toMap(u -> u.id, u -> u.name));
         Info info = new Info();
-        info.added = changed.size() - previous.size();
-        info.deleted = previous.size() - changed.size();
-        innovated = previous.stream().collect(Collectors.toMap(u -> u.id, u -> u.name));
-        info.changed = (int) changed.stream().filter(user -> !user.name.equals(innovated.get(user.id))).map(t -> 1).count();
-         // info.changed = users.size();
+        info.added = (int) changed.stream().filter(user -> !old.containsKey(user.id)).map(t -> 1).count();
+        int del   = (int) changed.stream().filter(user -> old.containsKey(user.id)).map(t -> 1).count();
+        info.deleted = old.size() - del;
+        info.changed = (int) changed.stream().filter(user -> !user.name.equals(old.get(user.id))).map(t -> 1).count();
+
+
         return info;
     }
 
