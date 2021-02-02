@@ -18,7 +18,6 @@ public class Analyze {
         info.deleted = old.size() - del;
         info.changed = (int) changed.stream().filter(user -> !user.name.equals(old.get(user.id))).map(t -> 1).count();
 
-
         return info;
     }
 
