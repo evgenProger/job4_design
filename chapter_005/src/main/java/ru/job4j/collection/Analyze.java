@@ -13,10 +13,10 @@ public class Analyze {
         Map<Integer, String> old;
         old = previous.stream().collect(Collectors.toMap(u -> u.id, u -> u.name));
         Info info = new Info();
-        info.added = (int) changed.stream().filter(user -> !old.containsKey(user.id)).map(t -> 1).count();
-        int del   = (int) changed.stream().filter(user -> old.containsKey(user.id)).map(t -> 1).count();
+        info.added = (int) changed.stream().filter(user -> !old.containsKey(user.id)).count();
+        int del   = (int) changed.stream().filter(user -> old.containsKey(user.id)).count();
         info.deleted = old.size() - del;
-        info.changed = (int) changed.stream().filter(user -> !user.name.equals(old.get(user.id))).map(t -> 1).count();
+        info.changed = (int) changed.stream().filter(user -> !user.name.equals(old.get(user.id))).count();
 
         return info;
     }
