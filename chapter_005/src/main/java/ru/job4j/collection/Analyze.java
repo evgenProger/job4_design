@@ -13,12 +13,12 @@ public class Analyze {
         Map<Integer, String> old;
         old = previous.stream().collect(Collectors.toMap(u -> u.id, u -> u.name));
         Info info = new Info();
-        for (int i = 0; i < changed.size(); i++) {
-            String name = old.remove(changed.get(i).id);
+        for (User user : changed) {
+            String name = old.remove(user.id);
             if (name == null) {
                 info.added++;
             }
-            if (name != null && !name.equals(changed.get(i).name)) {
+            if (name != null && !name.equals(user.name)) {
                 info.changed++;
             }
         }
