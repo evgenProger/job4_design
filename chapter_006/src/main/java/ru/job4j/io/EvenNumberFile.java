@@ -8,9 +8,9 @@ public class EvenNumberFile {
     public static void main(String[] args) throws IOException {
         try (FileInputStream in = new FileInputStream("even.txt")) {
             int read;
+            String str = null;
             while ((read = in.read()) != -1) {
-                char number = (char) read;
-                if (number % 2 == 0) {
+                if (Character.getNumericValue(read)  % 2 == 0) {
                     System.out.println("Yes");
                 }
             }
