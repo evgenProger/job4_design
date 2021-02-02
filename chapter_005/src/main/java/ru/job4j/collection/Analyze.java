@@ -49,5 +49,4 @@ public class Analyze {
         int changed;
         int deleted;
     }
-
 }
