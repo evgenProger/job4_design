@@ -17,6 +17,7 @@ public class LogFilter {
         }
         return res;
     }
+
     public static void save(List<String> log, String file) throws IOException {
         log.addAll(LogFilter.filter(file));
         try (PrintWriter out = new PrintWriter(
