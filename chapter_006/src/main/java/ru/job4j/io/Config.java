@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -16,18 +17,20 @@ public class Config {
         this.path = path;
     }
 
-    public void load() {
-        StringJoiner out = new StringJoiner(System.lineSeparator());
+    public void load()  {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             for (String line = read.readLine(); line != null; line = read.readLine()) {
-                if (line.startsWith("#")) {
+                if (line.startsWith("#") || line.isEmpty()) {
                     continue;
                 }
                 String arr[] = line.split("=");
+                if (arr.length < 2) {
+                    throw new IllegalArgumentException();
+                }
                 values.put(arr[0].trim(), arr[1].trim());
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -50,7 +53,10 @@ public class Config {
         return out.toString();
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Config("./data/app.properties"));
+    public static void main(String[] args) throws FileNotFoundException {
+        String path = "chapter_006/data/app.properties_without_value";
+        Config config = new Config(path);
+        config.load();
+        config.value("hibernate.connection.driver_class");
     }
 }
