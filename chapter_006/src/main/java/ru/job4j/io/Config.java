@@ -53,7 +53,7 @@ public class Config {
         return out.toString();
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         String path = "chapter_006/data/app.properties_without_value";
         Config config = new Config(path);
         config.load();
