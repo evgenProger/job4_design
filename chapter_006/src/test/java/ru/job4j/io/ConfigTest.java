@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class ConfigTest {
     @Test
     public void whenPairWithoutComment() {
-        String path = "C:\\projects\\job4j_design\\evgen";
+        String path = "./data/evgen";
         Config config = new Config(path);
         config.load();
         System.out.println(config.toString());
@@ -40,15 +40,7 @@ public class ConfigTest {
                 is("org.postgresql.Driver"));
 
     }
-    @Test(expected = UnsupportedOperationException.class)
-    public void whenNoneKeysThenException() {
-        String path = "./data/app.properties";
-        Config config = new Config(path);
-        config.load();
-        assertThat(config.value("hibernat.connection.driver_class"),
-                is("org.postgresql.Driver"));
 
-    }
 }
 
 
