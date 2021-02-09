@@ -9,19 +9,19 @@ public class Analizy {
         StringBuilder str = new StringBuilder();
         try (PrintWriter out = new PrintWriter(new BufferedOutputStream(new FileOutputStream(target)))) {
             try (BufferedReader in = new BufferedReader(new FileReader(source))) {
-                for (String line = in.readLine(); line != null; line = in.readLine()) {
-                    if (line.startsWith("400") || line.startsWith("500")) {
-                        while (!(line.startsWith("400") || line.startsWith("500"))) {
-                            if (line.startsWith("400") || line.startsWith("400")) {
-                                break;
+                        String line = in.readLine();
+                        while (line != null) {
+                            if (line.startsWith("400") || line.startsWith("500")) {
+                                str.append(line.substring(4)).append(";");
+                                while (line.startsWith("400") || line.startsWith("500") || line.isEmpty()) {
+                                    line = in.readLine();
+                                }
+                                str.append(line.substring(4)).append("\n");
+                                out.write(str.toString());
                             }
-                            str.append(line.substring(4)).append(";");
-                            out.write(str.toString());
-                            out.write("\n");
+                            line = in.readLine();
+                            str = new StringBuilder();
                         }
-                    }
-
-                }
             }
         }
     }
