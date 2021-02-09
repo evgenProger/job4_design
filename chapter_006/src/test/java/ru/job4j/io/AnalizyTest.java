@@ -20,6 +20,4 @@ public class AnalizyTest {
         }
         assertThat(res.toString(), is("10:57:01;10:59:01\n11:01:02;11:02:02\n"));
     }
-
-
 }
