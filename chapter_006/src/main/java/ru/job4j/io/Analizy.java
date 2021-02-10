@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Analizy {
     public void unavailable(String source, String target) throws IOException {
-        int i = 0, j = 0;
+        String ln = System.lineSeparator();
         StringBuilder str = new StringBuilder();
         try (PrintWriter out = new PrintWriter(new BufferedOutputStream(new FileOutputStream(target)))) {
             try (BufferedReader in = new BufferedReader(new FileReader(source))) {
@@ -16,7 +16,7 @@ public class Analizy {
                                 while (line.startsWith("400") || line.startsWith("500") || line.isEmpty()) {
                                     line = in.readLine();
                                 }
-                                str.append(line.substring(4)).append("\n");
+                                str.append(line.substring(4)).append(ln);
                                 out.write(str.toString());
                             }
                             line = in.readLine();
