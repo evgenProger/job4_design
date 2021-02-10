@@ -1,6 +1,8 @@
 package ru.job4j.io;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import java.io.*;
 
@@ -9,12 +11,15 @@ import static org.junit.Assert.*;
 
 public class AnalizyTest {
     String ln = System.lineSeparator();
+    @Rule
+    public TemporaryFolder folder = new TemporaryFolder();
     @Test
     public void whenReadFile() throws IOException {
         StringBuilder res = new StringBuilder();
         Analizy analizy = new Analizy();
-        analizy.unavailable("./data/server", "./data/log_server.txt");
-        try (BufferedReader read = new BufferedReader(new FileReader("./data/log_server.txt"))) {
+        File target = folder.newFile("target");
+        analizy.unavailable("./data/server", target.getAbsolutePath());
+        try (BufferedReader read = new BufferedReader(new FileReader(target.getAbsolutePath()))) {
             for (String line = read.readLine(); line != null; line = read.readLine()) {
                 res.append(line).append(ln);
             }
