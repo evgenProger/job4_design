@@ -23,7 +23,7 @@ public class Config {
                 if (line.startsWith("#") || line.isEmpty()) {
                     continue;
                 }
-                String arr[] = line.split("=");
+                String[] arr = line.split("=");
                 if (arr.length < 2) {
                     throw new IllegalArgumentException();
                 }

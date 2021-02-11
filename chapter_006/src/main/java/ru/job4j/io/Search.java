@@ -6,12 +6,11 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class Search {
     public static void main(String[] args) throws IOException {
         Path start = Paths.get(".");
-        search(start, "js").forEach(System.out::println);
+        search(start, "txt").forEach(System.out::println);
     }
 
     public static List<Path> search(Path root, String ext) throws IOException {
@@ -22,7 +21,7 @@ public class Search {
 
     private static class SearchFiles implements FileVisitor<Path> {
         Predicate<Path> predicate;
-        List<Path> paths;
+        List<Path> paths = new ArrayList<>();
 
         public SearchFiles(Predicate<Path> predicate) {
             this.predicate = predicate;
@@ -35,22 +34,26 @@ public class Search {
 
         @Override
         public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-            return null;
+            return FileVisitResult.CONTINUE;
         }
 
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            return null;
+            if (predicate.test(file)) {
+                paths.add(file);
+            }
+
+            return FileVisitResult.CONTINUE;
         }
 
         @Override
         public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-            return null;
+            return FileVisitResult.CONTINUE;
         }
 
         @Override
         public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-            return null;
+            return FileVisitResult.CONTINUE;
         }
     }
 }

@@ -34,7 +34,7 @@ public class EmailSolved2Test {
         List<String> users = new ArrayList<>();
         users.addAll(result.keySet());
         String user = users.get(0);
-        assertThat(result.get(user).size(), is(5));
+        assertThat(result.get(user).size(), is(3));
 
     }
     @Test

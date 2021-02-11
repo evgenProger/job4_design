@@ -22,7 +22,7 @@ public class LogFilter {
         log.addAll(LogFilter.filter(file));
         try (PrintWriter out = new PrintWriter(
                 new BufferedOutputStream(new FileOutputStream("logging.txt")))) {
-            for (String s : log ) {
+            for (String s : log) {
                 out.write(s);
                 out.write("\n");
             }

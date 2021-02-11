@@ -18,7 +18,7 @@ public class Multiple {
         }
         return table;
     }
-    public void recInFile( int[][] table ) throws IOException {
+    public void recInFile(int[][] table) throws IOException {
         StringBuilder str = new StringBuilder();
         try (FileOutputStream out = new FileOutputStream("table.txt")) {
             for (int i = 0; i < table.length; i++) {
@@ -35,7 +35,7 @@ public class Multiple {
 
     public static void main(String[] args) throws IOException {
         Multiple multiple = new Multiple();
-        int table[][] = multiple.multiple(9);
+        int[][] table = multiple.multiple(9);
         multiple.recInFile(table);
     }
 }
