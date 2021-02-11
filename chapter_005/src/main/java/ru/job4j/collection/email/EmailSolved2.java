@@ -1,15 +1,14 @@
 package ru.job4j.collection.email;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class EmailSolved2 {
-    public static   Map<String, Set<String>> union(Map<String, Set<String>> email_accounts) {
+    public static   Map<String, Set<String>> union(Map<String, Set<String>> accounts) {
         Map<String, Set<String>> res  = new LinkedHashMap<>();
         Map<String, String> temp = new HashMap<>();
         String name;
         Set<String> mails;
-        for (Map.Entry<String, Set<String>> pair: email_accounts.entrySet()) {
+        for (Map.Entry<String, Set<String>> pair: accounts.entrySet()) {
             mails = pair.getValue();
             name = pair.getKey();
             for (String m: mails) {
@@ -22,15 +21,15 @@ public class EmailSolved2 {
                 temp.put(mail, name);
             }
         }
-        for (Map.Entry<String, String> t: temp.entrySet()) {
+        for (Map.Entry<String, String> t : temp.entrySet()) {
             if (res.containsKey(t.getValue())) {
                 res.get(t.getValue()).add(t.getKey());
-            }
-            else {
+            } else {
                 Set<String> newSet = new HashSet<>();
                 newSet.add(t.getKey());
                 res.put(t.getValue(), newSet);
             }
+
         }
         return res;
     }

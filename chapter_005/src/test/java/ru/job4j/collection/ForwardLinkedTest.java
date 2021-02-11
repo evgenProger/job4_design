@@ -1,7 +1,7 @@
 package ru.job4j.collection;
 
 import org.junit.Test;
-import ru.job4j.collection.forwardLinked.ForwardLinked;
+import ru.job4j.collection.forwardlinked.ForwardLinked;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

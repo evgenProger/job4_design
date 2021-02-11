@@ -19,10 +19,10 @@ public class HashTableItem<K, V> {
 
     @Override
     public boolean equals(Object obj) {
-        if(this.key == obj) {
+        if (this.key == obj) {
             return true;
         }
-        if(obj == null || getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         K k = (K) obj;

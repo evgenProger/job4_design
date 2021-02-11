@@ -9,7 +9,7 @@ public class ListUtils {
     public static <T> void addBefore(List<T> list, int index, T value) {
         Objects.checkIndex(index, list.size());
         ListIterator<T> i = list.listIterator();
-        while(i.hasNext()) {
+        while (i.hasNext()) {
             if (i.nextIndex() == index) {
                 i.add(value);
                 break;
@@ -22,7 +22,7 @@ public class ListUtils {
         Objects.checkIndex(index, list.size());
         ListIterator<T> i = list.listIterator();
         while (i.hasNext()) {
-            if(i.previousIndex() == index) {
+            if (i.previousIndex() == index) {
                 i.add(value);
             }
             i.next();

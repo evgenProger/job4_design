@@ -24,10 +24,10 @@ public class User1 {
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
         }
-        if(obj == null || getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         User1 user1 = (User1) obj;
@@ -38,11 +38,11 @@ public class User1 {
 
     @Override
     public String toString() {
-        return "User1{" +
-                "name='" + name + '\'' +
-                ", children=" + children +
-                ", birthday=" + birthday +
-                '}';
+        return "User1{"
+                + "name='" + name + '\''
+                + ", children=" + children
+                + ", birthday=" + birthday
+                + '}';
     }
 
 

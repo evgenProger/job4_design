@@ -7,7 +7,7 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
     private int capacity;
    private int size;
    private int modcount = 0;
-   private final double LOAD_FACTOR = 0.75;
+   private final double loadfactor = 0.75;
 
     public HashTable(int capacity) {
         this.capacity = capacity;
@@ -16,26 +16,26 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
 
      public boolean insert(K key, V value) {
          boolean res = false;
-         if(getLOAD_FACTOR() >= LOAD_FACTOR) {
+         if (getLoadfactor() >= loadfactor) {
              this.resize();
          }
         int index = Math.abs(key.hashCode()) % capacity;
-        if(array[index] == null) {
+        if (array[index] == null) {
             array[index] = new HashTableItem(key, value);
             size++;
             modcount++;
             res = true;
-        }
-        else {
+        } else {
             if (array[index].key.equals(key)) {
                 array[index].value = value;
                 res = true;
             }
         }
+
         return res;
      }
 
-    private double getLOAD_FACTOR() {
+    private double getLoadfactor() {
         return size / capacity;
     }
 
@@ -97,8 +97,8 @@ public class HashTable<K, V> implements Iterable<HashTableItem<K, V>> {
                 if (expectedModCount != modcount) {
                     throw new ConcurrentModificationException();
                 }
-                while(currentIndex < capacity) {
-                    if(array[currentIndex] != null) {
+                while (currentIndex < capacity) {
+                    if (array[currentIndex] != null) {
                         break;
                     }
                     currentIndex++;

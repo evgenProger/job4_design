@@ -1,4 +1,4 @@
-package ru.job4j.collection.forwardLinked;
+package ru.job4j.collection.forwardlinked;
 import  java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -31,7 +31,7 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     public T deleteLast() {
-        if(head == null) {
+        if (head == null) {
             throw new NoSuchElementException();
         }
         Node<T> node = head;
@@ -53,7 +53,7 @@ public class ForwardLinked<T> implements Iterable<T> {
 
     public void revert() {
        Node<T> prev = null;
-       if(this.size > 1) {
+       if (this.size > 1) {
            Node<T> current = head;
            Node<T> next = head.next;
            while (next != null) {

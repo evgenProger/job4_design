@@ -1,6 +1,6 @@
 package ru.job4j.collection;
 
-import ru.job4j.collection.forwardLinked.ForwardLinked;
+import ru.job4j.collection.forwardlinked.ForwardLinked;
 
 public class SimpleStack<T> {
     ForwardLinked<T> linked = new ForwardLinked<T>();

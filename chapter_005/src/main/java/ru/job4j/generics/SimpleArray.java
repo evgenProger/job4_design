@@ -58,8 +58,8 @@ public class SimpleArray<T> implements Iterable<T> {
 
     @Override
     public String toString() {
-        return "SimpleArray{" +
-                "element=" + Arrays.toString(element) +
-                '}';
+        return "SimpleArray{"
+                + "element=" + Arrays.toString(element)
+                + '}';
     }
 }

@@ -12,9 +12,9 @@ public class Email {
             return res;
         }
         for (String user: accounts.keySet()) {
-            for (String user_res: res.keySet()) {
-               if (res.get(user_res).stream().anyMatch(u -> accounts.get(user).contains(u))) {
-                   res.get(user_res).addAll(accounts.get(user));
+            for (String userRes: res.keySet()) {
+               if (res.get(userRes).stream().anyMatch(u -> accounts.get(user).contains(u))) {
+                   res.get(userRes).addAll(accounts.get(user));
                    accounts.remove(user);
                    return fillingMap(accounts, res);
                }
