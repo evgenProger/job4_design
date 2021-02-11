@@ -29,11 +29,6 @@ public class HashTableItem<K, V> {
         return Objects.equals(k, key);
     }
 
-
-    public K getKey() {
-        return key;
-    }
-
     public V getValue() {
         return value;
     }
