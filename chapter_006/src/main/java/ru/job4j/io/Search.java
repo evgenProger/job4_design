@@ -31,7 +31,6 @@ public class Search {
             return paths;
         }
 
-
         @Override
         public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
             return FileVisitResult.CONTINUE;
@@ -42,7 +41,6 @@ public class Search {
             if (predicate.test(file)) {
                 paths.add(file);
             }
-
             return FileVisitResult.CONTINUE;
         }
 

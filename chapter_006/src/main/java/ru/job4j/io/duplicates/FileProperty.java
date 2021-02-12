@@ -1,4 +1,4 @@
-package ru.job4j.io;
+package ru.job4j.io.duplicates;
 
 import java.util.Objects;
 
@@ -43,4 +43,6 @@ public class FileProperty {
     public int hashCode() {
         return Objects.hash(size, name);
     }
+
+    
 }
