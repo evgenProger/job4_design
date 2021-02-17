@@ -9,8 +9,14 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get(".");
-        search(start, "txt").forEach(System.out::println);
+        if (args.length != 2 ) {
+            throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER. .txt");
+        }
+        Path start = Paths.get(args[0]);
+        if (!start.toFile().isDirectory()) {
+            throw new IllegalArgumentException("Path not exist");
+        }
+        search(start, args[1]).forEach(System.out::println);
     }
 
     public static List<Path> search(Path root, String ext) throws IOException {
