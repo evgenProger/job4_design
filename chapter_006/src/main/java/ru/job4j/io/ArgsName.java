@@ -34,8 +34,8 @@ public class ArgsName {
                 throw new IllegalArgumentException();
             }
             values.put(arr[0].substring(1), arr[1]);
-            System.out.println(values);
-
         }
     }
+
+
 }

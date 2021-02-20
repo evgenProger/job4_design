@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        if (args.length != 2 ) {
+        if (args.length != 2) {
             throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER. .txt");
         }
         Path start = Paths.get(args[0]);
@@ -25,7 +25,7 @@ public class Search {
         return searcher.getPaths();
     }
 
-    private static class SearchFiles implements FileVisitor<Path> {
+    public static class SearchFiles implements FileVisitor<Path> {
         Predicate<Path> predicate;
         List<Path> paths = new ArrayList<>();
 
