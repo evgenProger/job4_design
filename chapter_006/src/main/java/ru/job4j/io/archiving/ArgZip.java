@@ -18,15 +18,13 @@ public class ArgZip  {
 
     public Map<String, String> fillingMap() {
       values = new HashMap<>();
-      try {
+      if(args.length % 2 != 0) {
+          throw new IllegalArgumentException();
+      }
           for (int i = 0; i < args.length - 1; i += 2) {
               values.put(args[i], args[i + 1]);
           }
-      } catch (IndexOutOfBoundsException e) {
-          throw new IllegalArgumentException();
-      }
-
-       return values;
+          return values;
     }
 
     public boolean valid() {
