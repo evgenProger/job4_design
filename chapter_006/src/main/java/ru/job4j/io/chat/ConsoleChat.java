@@ -25,11 +25,11 @@ public class ConsoleChat {
         String word = in.nextLine();
         readPhrases();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(botAnswers))) {
-            while (!word.equals(OUT)) {
-                if (word.equals(STOP)) {
+            while (!OUT.equals(word)) {
+                if (STOP.equals(word)) {
                     res = false;
                 }
-                if (word.equals(CONTINUE)) {
+                if (CONTINUE.equals(word)) {
                     res = true;
                 }
                 writer.write(word + ln);

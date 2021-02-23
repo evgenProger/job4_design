@@ -31,7 +31,6 @@ public class Zip {
         try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
             for (Path path: source) {
                 zip.putNextEntry(new ZipEntry(path.toString()));
-
                 try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(path.toString()))) {
                     zip.write(out.readAllBytes());
                 }
