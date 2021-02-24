@@ -17,18 +17,17 @@ public class EchoServer {
                      //in входной поток (отправленный клиентом)
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    String str = in.readLine();
-                    while (!(str).isEmpty()) {   // чтение данных отправленных клиентом
-                        System.out.println(str);
-                        if (str.contains("Bye")) {
-                            server.close();
-                            break;
-                        }
-                        str = in.readLine();
+                    StringBuilder sb = new StringBuilder();
+                    for (String str = in.readLine(); !str.isEmpty(); str = in.readLine()) {   // чтение данных отправленных клиентом
+                        sb.append(str);
+
                     }
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-                    out.write("Hello, dear friend.".getBytes());
-                    out.flush();
+                    out.write("Hello, dear friends.".getBytes());
+                    if (sb.toString().contains("Bye")) {
+                        server.close();
+                        break;
+                    }
                 }
             }
         }
