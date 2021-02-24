@@ -18,7 +18,7 @@ public class ArgZip  {
 
     public Map<String, String> fillingMap() {
       values = new HashMap<>();
-      if(args.length % 2 != 0) {
+      if (args.length % 2 != 0) {
           throw new IllegalArgumentException();
       }
           for (int i = 0; i < args.length - 1; i += 2) {

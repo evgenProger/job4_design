@@ -14,15 +14,17 @@ public class EchoServer {
             while (!server.isClosed()) {
                 Socket socket = server.accept();
                 try (OutputStream out = socket.getOutputStream();               // выходной поток (ответ сервера)
-                     BufferedReader in = new BufferedReader(                    // входной поток (отправленный клиентом)
+                     //in входной поток (отправленный клиентом)
+                     BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    String str;
-                    while (!(str = in.readLine()).isEmpty()) {   // чтение данных отправленных клиентом
+                    String str = in.readLine();
+                    while (!(str).isEmpty()) {   // чтение данных отправленных клиентом
                         System.out.println(str);
                         if (str.contains("Bye")) {
                             server.close();
                             break;
                         }
+                        str = in.readLine();
                     }
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     out.write("Hello, dear friend.".getBytes());
