@@ -18,15 +18,17 @@ public class EchoServer {
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     StringBuilder sb = new StringBuilder();
-                    for (String str = in.readLine(); !str.isEmpty(); str = in.readLine()) {   // чтение данных отправленных клиентом
+                    for (String str = in.readLine(); !str.isEmpty(); str = in.readLine()) {
                         sb.append(str);
-
                     }
-                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-                    out.write("Hello, dear friends.".getBytes());
-                    if (sb.toString().contains("Bye")) {
-                        server.close();
+                    if (sb.toString().contains("Hello")) {
+                        out.write("Hello".getBytes());
+                    }
+                    else if (sb.toString().contains("Exit")) {
+                        socket.close();
                         break;
+                    } else {
+                        out.write("What?".getBytes());
                     }
                 }
             }
