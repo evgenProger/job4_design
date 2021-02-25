@@ -22,12 +22,12 @@ public class EchoServer {
                         sb.append(str);
                     }
                     if (sb.toString().contains("Hello")) {
-                        out.write("Hello".getBytes());
+                        out.write("Hello\r\n\r\n".getBytes());
                     } else if (sb.toString().contains("Exit")) {
                         socket.close();
                         break;
                     } else {
-                        out.write("What?".getBytes());
+                        out.write("What?\r\n\r\n".getBytes());
                     }
                 }
             }
