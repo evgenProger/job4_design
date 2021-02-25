@@ -12,8 +12,12 @@ public class Contact implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Contact contact = (Contact) o;
         return zipCode == contact.zipCode && phone.equals(contact.phone);
     }
@@ -38,10 +42,12 @@ public class Contact implements Serializable {
 
     @Override
     public String toString() {
-        return "Contact{" +
-                "zipCode=" + zipCode +
-                ", phone='" + phone + '\'' +
-                '}';
+        return "Contact{"
+                + "zipCode="
+                + zipCode
+                + ", phone='" + phone
+                + '\''
+                + '}';
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {

@@ -23,8 +23,7 @@ public class EchoServer {
                     }
                     if (sb.toString().contains("Hello")) {
                         out.write("Hello".getBytes());
-                    }
-                    else if (sb.toString().contains("Exit")) {
+                    } else if (sb.toString().contains("Exit")) {
                         socket.close();
                         break;
                     } else {
