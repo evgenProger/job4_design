@@ -18,6 +18,7 @@ public class EchoServer {
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     StringBuilder sb = new StringBuilder();
+                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     for (String str = in.readLine(); !str.isEmpty(); str = in.readLine()) {
                         sb.append(str);
                     }
