@@ -9,13 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>chapter_006</artifactId>
+    <packaging>jar</packaging>
     <build>
         <finalName>chapter_006</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>

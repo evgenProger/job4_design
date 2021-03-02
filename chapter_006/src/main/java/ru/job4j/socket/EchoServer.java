@@ -29,6 +29,8 @@ public class EchoServer {
                     if (sb.toString().contains("Hello")) {
                         out.write("Hello\r\n\r\n".getBytes());
                     } else if (sb.toString().contains("Exit")) {
+                        out.write("Exit\r\r\r\n".getBytes());
+                        out.flush();
                         socket.close();
                         break;
                     } else {

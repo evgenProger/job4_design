@@ -14,6 +14,7 @@
     <module>chapter_007</module>
     <module>chapter_008</module>
     <module>chapter_009</module>
+    <module>SearchFiles</module>
   </modules>
 
   <name>job4j_design</name>
@@ -41,6 +42,14 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.6</version>
+    </dependency>
+
 
     <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
     <dependency>
