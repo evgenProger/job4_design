@@ -13,8 +13,7 @@ public class Searcher extends SimpleFileVisitor<Path>  {
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-
-
+        
         return super.visitFile(file, attrs);
     }
 

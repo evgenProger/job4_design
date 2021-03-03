@@ -13,7 +13,8 @@ import java.nio.charset.StandardCharsets;
 
 public class EchoServer {
     private static final Logger LOG = LoggerFactory.getLogger(EchoServer.class.getName());
-    public static void main(String[] args)  {
+
+    public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
             while (!server.isClosed()) {
                 Socket socket = server.accept();
@@ -21,20 +22,18 @@ public class EchoServer {
                      //in входной поток (отправленный клиентом)
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    StringBuilder sb = new StringBuilder();
-                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-                    for (String str = in.readLine(); !str.isEmpty(); str = in.readLine()) {
-                        sb.append(str);
-                    }
-                    if (sb.toString().contains("Hello")) {
-                        out.write("Hello\r\n\r\n".getBytes());
-                    } else if (sb.toString().contains("Exit")) {
-                        out.write("Exit\r\r\r\n".getBytes());
-                        out.flush();
-                        socket.close();
-                        break;
-                    } else {
-                        out.write("What?\r\n\r\n".getBytes());
+                    String str = in.readLine();
+                    if (str != null && !str.isEmpty()) {
+                        if (str.contains("Hello")) {
+                            out.write("Hello\r\n\r\n".getBytes());
+                        } else if (str.contains("Exit")) {
+                            out.write("Exit\r\r\r\n".getBytes());
+                            out.flush();
+                            socket.close();
+                            break;
+                        } else {
+                            out.write("What?\r\n\r\n".getBytes());
+                        }
                     }
                 }
             }
