@@ -8,13 +8,27 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Searcher extends SimpleFileVisitor<Path>  {
+
     Predicate<Path> predicate;
     List<Path> pathList = new ArrayList<>();
 
+    public Searcher(Predicate<Path> predicate) {
+        this.predicate = predicate;
+    }
+
+    public List<Path> getPathList() {
+        return pathList;
+    }
+
+
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        
-        return super.visitFile(file, attrs);
+        if (predicate.test(file)) {
+            pathList.add(file);
+        }
+        return FileVisitResult.CONTINUE;
     }
+
+
 
 }

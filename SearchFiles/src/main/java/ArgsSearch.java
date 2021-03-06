@@ -6,8 +6,8 @@ public class ArgsSearch {
     private HashMap<String, String> arguments;
 
     public ArgsSearch(String[] args) {
-        arguments = (HashMap<String, String>) fillingMap();
         this.args = args;
+        arguments = (HashMap<String, String>) fillingMap();
     }
 
 
@@ -30,15 +30,16 @@ public class ArgsSearch {
         return arguments.get("-d");
     }
 
-    public String name()  {
+    public String name() {
         return arguments.get("-n");
     }
 
-    public String type() { return arguments.get("-t"); }
+    public String type() {
+        return arguments.get("-t");
+    }
 
     public String output() {
         return arguments.get("-o");
     }
-
 
 }
