@@ -6,11 +6,11 @@ import com.google.gson.GsonBuilder;
 import java.util.Arrays;
 
 public class Car {
-    boolean res;
-    int number;
-    String name;
-    Person person;
-    int[] years;
+    private boolean res;
+    private int number;
+    private String name;
+    private Person person;
+    private int[] years;
 
     @Override
     public String toString() {
@@ -31,10 +31,57 @@ public class Car {
         this.years = years;
     }
 
-    private static class Person {
-        String id = "1245";
+    public boolean isRes() {
+        return res;
+    }
 
+    public void setRes(boolean res) {
+        this.res = res;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public int[] getYears() {
+        return years;
+    }
+
+    public void setYears(int[] years) {
+        this.years = years;
+    }
+
+    private static class Person {
+        private String id = "1245";
         public Person(String id) {
+            this.id = id;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
             this.id = id;
         }
     }
