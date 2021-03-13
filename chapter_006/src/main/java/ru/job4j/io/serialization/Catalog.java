@@ -19,84 +19,52 @@ import java.io.StringWriter;
 public class Catalog {
 
      private Book[] book;
-
      public Catalog() { }
 
     public Catalog(Book[] book) {
-        this.setBook(book);
+        this.book = book;
     }
 
     @Override
     public String toString() {
         return "Catalog{" +
-                "book=" + getBook() +
+                "book=" + book +
                 '}';
-    }
-
-    public Book[] getBook() {
-        return book;
-    }
-
-    public void setBook(Book[] book) {
-        this.book = book;
     }
 
     @XmlElement(value = "book")
     private static class Book {
         @XmlAttribute
         private boolean availability;
+
         @XmlAttribute
         private String author;
+
         @XmlAttribute
         private int isbn;
 
-        public Book() { }
+        public Book() {
+        }
 
         public Book(boolean availability, String author, int isbn) {
-            this.setAvailability(availability);
-            this.setAuthor(author);
-            this.setIsbn(isbn);
-
+            this.availability = availability;
+            this.author = author;
+            this.isbn = isbn;
         }
 
         @Override
         public String toString() {
             return "Book{" +
-                    "availability=" + isAvailability() +
-                    ", author='" + getAuthor() + '\'' +
-                    ", isbn=" + getIsbn() +
+                    "availability=" + availability +
+                    ", author='" + author + '\'' +
+                    ", isbn=" + isbn +
                     '}';
         }
-
-        public boolean isAvailability() {
-            return availability;
-        }
-
-        public void setAvailability(boolean availability) {
-            this.availability = availability;
-        }
-
-        public String getAuthor() {
-            return author;
-        }
-
-        public void setAuthor(String author) {
-            this.author = author;
-        }
-
-        public int getIsbn() {
-            return isbn;
-        }
-
-        public void setIsbn(int isbn) {
-            this.isbn = isbn;
-        }
     }
-
     public static void main(String[] args) throws JAXBException, IOException {
         Book book = new Book(true, "Stephen King", 125);
-        Book book1 = new Book(false, "Arthur C. Clarke", 356);
-        final Catalog catalog = new Catalog(new Book[] {book, book1});
+      //  Book book1 = new Book(false, "Arthur C. Clarke", 356);
+        final Catalog catalog = new Catalog(new Book[] {book});
         JAXBContext context = JAXBContext.newInstance(Catalog.class);
         // создаем сериализатор
         Marshaller marshaller = context.createMarshaller();
