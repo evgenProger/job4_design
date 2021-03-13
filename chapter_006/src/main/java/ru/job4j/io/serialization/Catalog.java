@@ -1,42 +1,72 @@
 package ru.job4j.io.serialization;
 
-import java.util.Arrays;
-
 public class Catalog {
-    Book[] book;
+     private Book[] book;
 
     public Catalog(Book[] book) {
-        this.book = book;
+        this.setBook(book);
     }
 
 
     @Override
     public String toString() {
         return "Catalog{" +
-                "book=" + book +
+                "book=" + getBook() +
                 '}';
     }
 
+    public Book[] getBook() {
+        return book;
+    }
+
+    public void setBook(Book[] book) {
+        this.book = book;
+    }
+
     private static class Book {
-        boolean availability;
-        String author;
-        int isbn;
+        private boolean availability;
+        private String author;
+        private int isbn;
 
 
         public Book(boolean availability, String author, int isbn) {
-            this.availability = availability;
-            this.author = author;
-            this.isbn = isbn;
+            this.setAvailability(availability);
+            this.setAuthor(author);
+            this.setIsbn(isbn);
 
         }
 
         @Override
         public String toString() {
             return "Book{" +
-                    "availability=" + availability +
-                    ", author='" + author + '\'' +
-                    ", isbn=" + isbn +
+                    "availability=" + isAvailability() +
+                    ", author='" + getAuthor() + '\'' +
+                    ", isbn=" + getIsbn() +
                     '}';
+        }
+
+        public boolean isAvailability() {
+            return availability;
+        }
+
+        public void setAvailability(boolean availability) {
+            this.availability = availability;
+        }
+
+        public String getAuthor() {
+            return author;
+        }
+
+        public void setAuthor(String author) {
+            this.author = author;
+        }
+
+        public int getIsbn() {
+            return isbn;
+        }
+
+        public void setIsbn(int isbn) {
+            this.isbn = isbn;
         }
     }
 

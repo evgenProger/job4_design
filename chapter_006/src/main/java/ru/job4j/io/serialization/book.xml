@@ -1,20 +1,16 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 <catalog>
-    <statuses>
-        <status>
-            <book>
-                <availability>true</availability>
-                <author>Stephen King</author>
-                <ISBN>125</ISBN>
-            </book>
-        </status>
-        <status>
-            <book>
-                <availability>false</availability>
-                <author>Arthur C. Clarke</author>
-                <ISBN>356</ISBN>
-            </book>
-        </status>
+    <books>
+        <book>
+            <availability>true</availability>
+            <author>Stephen King</author>
+            <ISBN>125</ISBN>
+        </book>
+        <book>
+            <availability>false</availability>
+            <author>Arthur C. Clarke</author>
+            <ISBN>356</ISBN>
+        </book>
         <status>Married</status>
-    </statuses>
+    </books>
 </catalog>
