@@ -63,8 +63,8 @@ public class Catalog {
     }
     public static void main(String[] args) throws JAXBException, IOException {
         Book book = new Book(true, "Stephen King", 125);
-      //  Book book1 = new Book(false, "Arthur C. Clarke", 356);
-        final Catalog catalog = new Catalog(new Book[] {book});
+        Book book1 = new Book(false, "Arthur C. Clarke", 356);
+        final Catalog catalog = new Catalog(new Book[] {book, book1});
         JAXBContext context = JAXBContext.newInstance(Catalog.class);
         // создаем сериализатор
         Marshaller marshaller = context.createMarshaller();
