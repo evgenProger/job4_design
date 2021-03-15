@@ -2,6 +2,8 @@ package ru.job4j.io.serialization;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import org.json.JSONObject;
 
 import java.util.Arrays;
 
@@ -35,44 +37,24 @@ public class Car {
         return res;
     }
 
-    public void setRes(boolean res) {
-        this.res = res;
-    }
-
     public int getNumber() {
         return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Person getPerson() {
         return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     public int[] getYears() {
         return years;
     }
 
-    public void setYears(int[] years) {
-        this.years = years;
-    }
-
     private static class Person {
-        private String id = "1245";
+        private String id;
         public Person(String id) {
             this.id = id;
         }
@@ -80,33 +62,22 @@ public class Car {
         public String getId() {
             return id;
         }
-
-        public void setId(String id) {
-            this.id = id;
-        }
     }
 
     public static void main(String[] args) {
-        final Car car = new Car(true, 254, "BMW", new Person("1245"), new int[] {1980, 1982, 1952});
-        final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(car));
-        /* Модифицируем json-строку */
-        final String carJson =
-                "{"
-                        + "\"res\":true,"
-                        + "\"number\":35,"
-                        + "\"name\": mers,"
-                        + "\"person\":"
-                        + "{"
-                        + "\"id\":\"254\""
-                        + "},"
-                        + "\"years\":"
-                        + "[\"1984\",\"254\"]"
-                +"}";
-
-        final Car carMod = gson.fromJson(carJson, Car.class);
-        System.out.println(carMod);
-
+        /* JSONObject из json-строки строки */
+        JSONObject jsonPerson = new JSONObject("{\"id\":\"1245\"}");
+        /* JSONObject напрямую методом put */
+        final Car car = new Car(true, 254, "BMW", new Person("1245"), new int[]{1980, 1982, 1952});
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("res", car.isRes());
+        jsonObject.put("number", car.getNumber());
+        jsonObject.put("name", car.getName());
+        jsonObject.put("person", jsonPerson);
+        jsonObject.put("years", car.getYears());
+        System.out.println(jsonObject.toString());
+        /* Преобразуем объект person в json-строку */
+        System.out.println(new JSONObject(car).toString());
     }
 
 
