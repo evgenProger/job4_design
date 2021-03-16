@@ -55,20 +55,26 @@ public class Car {
 
     private static class Person {
         private String id;
-        public Person(String id) {
+        private int number;
+        public Person(String id, int number) {
             this.id = id;
+            this.number = number;
         }
 
         public String getId() {
             return id;
         }
+
+        public int getNumber() {
+            return number;
+        }
     }
 
     public static void main(String[] args) {
         /* JSONObject из json-строки строки */
-        JSONObject jsonPerson = new JSONObject("{\"id\":\"1245\"}");
+        JSONObject jsonPerson = new JSONObject("{\"id\":\"1245\", \"number\":\"654\"}" );
         /* JSONObject напрямую методом put */
-        final Car car = new Car(true, 254, "BMW", new Person("1245"), new int[]{1980, 1982, 1952});
+        final Car car = new Car(true, 254, "BMW", new Person("1245", 654), new int[]{1980, 1982, 1952});
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("res", car.isRes());
         jsonObject.put("number", car.getNumber());
