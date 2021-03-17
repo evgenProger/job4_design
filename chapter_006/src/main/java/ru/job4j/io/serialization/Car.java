@@ -53,22 +53,6 @@ public class Car {
         return years;
     }
 
-    private static class Person {
-        private String id;
-        private int number;
-        public Person(String id, int number) {
-            this.id = id;
-            this.number = number;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public int getNumber() {
-            return number;
-        }
-    }
 
     public static void main(String[] args) {
         /* JSONObject из json-строки строки */
