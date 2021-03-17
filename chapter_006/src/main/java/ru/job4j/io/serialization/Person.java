@@ -8,6 +8,8 @@ public class Person {
         this.number = number;
     }
 
+    public Person() {}
+
     public String getId() {
         return id;
     }
