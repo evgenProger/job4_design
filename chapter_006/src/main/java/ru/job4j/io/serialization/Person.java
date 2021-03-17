@@ -15,4 +15,12 @@ public class Person {
     public int getNumber() {
         return number;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 }
