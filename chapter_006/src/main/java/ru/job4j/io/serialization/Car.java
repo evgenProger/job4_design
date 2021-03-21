@@ -53,7 +53,7 @@ public class Car {
         return years;
     }
 
-    static class Person {
+    private static class Person {
         private String id;
         private int number;
         public Person(String id, int number) {
