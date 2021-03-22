@@ -29,7 +29,8 @@ public class Shell {
             }
             str = new StringBuilder(str.substring(0, str.lastIndexOf("/") + 1));
             res.addFirst(str.toString());
-        } else if (path.endsWith("..") && !res.isEmpty() && res.size() > 2){
+        }
+        else if (path.endsWith("..") && !res.isEmpty() && res.size() > 2){
             int count = 0;
             while (count < 2) {
                 str.append(res.pollFirst());
