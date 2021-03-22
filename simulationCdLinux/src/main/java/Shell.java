@@ -36,10 +36,11 @@ public class Shell {
                 str.append(res.pollFirst());
                 count++;
             }
+            while (!res.isEmpty()) {
+                res.poll();
+            }
             res.addFirst(str.toString());
-            res.pollLast();
         }
-
     }
 
     public String pwd() {
