@@ -3,7 +3,6 @@ import java.util.LinkedList;
 public class Shell {
     private LinkedList<String> res = new LinkedList<>();
 
-
     public void cd(String path) {
         StringBuilder str = new StringBuilder();
         if (path.equals("/")) {
