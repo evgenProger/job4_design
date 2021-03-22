@@ -1,26 +1,57 @@
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.LinkedList;
 
 public class Shell {
-    private  List<String> res = new ArrayList<>();
-    private String str;
+    private LinkedList<String> res = new LinkedList<>();
 
-    public void cd (String path) {
+
+    public void cd(String path) {
+        StringBuilder str = new StringBuilder();
         if (path.equals("/")) {
-            str = path;
+            res.addFirst(path);
             return;
         }
-        String[] arr = path.split("/");
-        res.addAll(Arrays.asList(arr));
+        if (!path.endsWith("..")) {
+            str.append("/").append(path);
+            res.addLast(str.toString());
+        }
+        if (path.endsWith("..") && res.isEmpty()) {
+            str = new StringBuilder(path.substring(0, path.lastIndexOf("/")));
+            str = new StringBuilder(str.substring(0, str.lastIndexOf("/") + 1));
+            res.addFirst(str.toString());
+            return;
+
+        }
+        if (path.endsWith("..") && !res.isEmpty() && res.size() <= 2) {
+            str = new StringBuilder();
+            while (!res.isEmpty()) {
+                str.append(res.pollFirst());
+                str.append(path);
+            }
+            str = new StringBuilder(str.substring(0, str.lastIndexOf("/") + 1));
+            res.addFirst(str.toString());
+        } else if (path.endsWith("..") && !res.isEmpty() && res.size() > 2){
+            int count = 0;
+            while (count < 2) {
+                str.append(res.pollFirst());
+                count++;
+            }
+            res.addFirst(str.toString());
+            res.pollLast();
+        }
+
     }
 
     public String pwd() {
         StringBuilder sb = new StringBuilder();
+        while (!res.isEmpty()) {
+            sb.append(res.pollFirst());
+        }
+        return sb.toString();
+    }
+}
+
+
+      /*  StringBuilder sb = new StringBuilder();
         if (str != null && str.equals("/")) {
             return str;
         }
@@ -41,6 +72,8 @@ public class Shell {
             }
         }
         str = sb.toString();
-        return str;
-    }
-}
+
+       */
+
+
+
