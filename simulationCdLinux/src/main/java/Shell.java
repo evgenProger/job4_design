@@ -4,7 +4,32 @@ public class Shell {
     private LinkedList<String> res = new LinkedList<>();
 
     public void cd(String path) {
-        StringBuilder str = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
+        if (path.equals("/")) {
+            res.addFirst(path);
+            return;
+        }
+        String[] str;
+        str = path.split("/");
+        for (int i = 0; i < str.length; i++) {
+            if (str[i].equals("")) {
+                continue;
+            }
+            if (!str[i].equals(".."))   {
+                res.addLast(str[i]);
+            }
+            else {
+                res.pollFirst();
+            }
+        }
+
+        while (!res.isEmpty()) {
+            sb.append("/").append(res.pollFirst());
+        }
+
+        }
+
+       /* StringBuilder str = new StringBuilder();
         if (path.equals("/")) {
             res.addFirst(path);
             return;
@@ -41,6 +66,7 @@ public class Shell {
             res.addFirst(str.toString());
         }
     }
+        */
 
     public String pwd() {
         StringBuilder sb = new StringBuilder();
@@ -52,29 +78,7 @@ public class Shell {
 }
 
 
-      /*  StringBuilder sb = new StringBuilder();
-        if (str != null && str.equals("/")) {
-            return str;
-        }
-        if (res.get(0).equals("")) {
-            res.remove(0);
-        }
-        if (res.get(res.size() - 1).equals("..") && res.size() <= 2) {
-            return "/";
-        }
-        if (res.get(res.size() - 1).equals("..")) {
-            for (int i = 0; i < res.size() - 2; i++) {
-                sb.append("/").append(res.get(i));
-            }
-        }
-        else {
-            for (int i = 0; i < res.size(); i++) {
-                sb.append("/").append(res.get(i));
-            }
-        }
-        str = sb.toString();
 
-       */
 
 
 

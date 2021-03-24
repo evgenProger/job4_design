@@ -42,6 +42,14 @@ public class ShellTest {
                 shell.pwd(), is("/")
         );
     }
+    @Test
+    public void whenDotsInMiddle() throws IOException {
+        Shell shell = new Shell();
+        shell.cd("user/my/../dir");
+        assertThat(
+                shell.pwd(), is("/dir")
+        );
+    }
 
     @Test
     public void whenCdUserLocalMy() throws IOException {
@@ -54,5 +62,4 @@ public class ShellTest {
                 shell.pwd(), is("/user/local")
         );
     }
-
 }

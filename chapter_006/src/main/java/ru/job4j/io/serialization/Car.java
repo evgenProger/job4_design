@@ -86,6 +86,26 @@ public class Car {
         System.out.println(new JSONObject(car).toString());
     }
 
+    public void setRes(boolean res) {
+        this.res = res;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public void setYears(int[] years) {
+        this.years = years;
+    }
+
 
 
 
