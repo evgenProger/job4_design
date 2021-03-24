@@ -15,19 +15,18 @@ public class Shell {
             if (str[i].equals("")) {
                 continue;
             }
-            if (!str[i].equals(".."))   {
+            if (!str[i].equals("..")) {
                 res.addLast(str[i]);
             }
             else {
                 res.pollFirst();
             }
-        }
-
-        while (!res.isEmpty()) {
-            sb.append("/").append(res.pollFirst());
-        }
 
         }
+    }
+
+
+
 
        /* StringBuilder str = new StringBuilder();
         if (path.equals("/")) {
@@ -76,6 +75,7 @@ public class Shell {
         return sb.toString();
     }
 }
+
 
 
 
