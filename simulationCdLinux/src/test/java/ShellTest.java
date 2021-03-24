@@ -47,7 +47,7 @@ public class ShellTest {
         Shell shell = new Shell();
         shell.cd("user/my/../dir");
         assertThat(
-                shell.pwd(), is("/dir")
+                shell.pwd(), is("/user/dir")
         );
     }
 
