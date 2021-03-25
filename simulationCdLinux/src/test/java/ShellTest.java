@@ -8,14 +8,14 @@ import static org.junit.Assert.*;
 
 public class ShellTest {
     @Test
-    public void whenCdBack() throws IOException {
+    public void whenCdBack() {
         Shell shell = new Shell();
         shell.cd("/user/..");
         assertThat(shell.pwd(), is("/"));
     }
 
     @Test
-    public void whenCdRoot() throws IOException {
+    public void whenCdRoot() {
         Shell shell = new Shell();
         shell.cd("/");
         assertThat(
@@ -24,7 +24,7 @@ public class ShellTest {
     }
 
     @Test
-    public void whenCdUserLocal() throws IOException {
+    public void whenCdUserLocal() {
         Shell shell = new Shell();
         shell.cd("user");
         shell.cd("local");
@@ -34,7 +34,7 @@ public class ShellTest {
     }
 
     @Test
-    public void whenCdUserBack() throws IOException {
+    public void whenCdUserBack() {
         Shell shell = new Shell();
         shell.cd("user");
         shell.cd("..");
@@ -43,7 +43,7 @@ public class ShellTest {
         );
     }
     @Test
-    public void whenDotsInMiddle() throws IOException {
+    public void whenDotsInMiddle() {
         Shell shell = new Shell();
         shell.cd("user/my/../dir");
         assertThat(
@@ -52,7 +52,7 @@ public class ShellTest {
     }
 
     @Test
-    public void whenCdUserLocalMy() throws IOException {
+    public void whenCdUserLocalMy() {
         Shell shell = new Shell();
         shell.cd("user");
         shell.cd("local");
