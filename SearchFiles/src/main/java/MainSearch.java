@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class MainSearch {
     ArgsSearch argsSearch;
@@ -17,26 +18,31 @@ public class MainSearch {
         }
     }
 
+    private String preparePattern(String mask) {
+        return mask.replace(".", "\\.").replaceAll("\\*", ".*");
+    }
+
     public List<Path> foundInList() throws IOException {
         List<Path> foundFiles;
         if (argsSearch.type().equals("name")) {
-            searcher = new Searcher(path -> path.getFileName().toString().equals(argsSearch.name()));
-
+            searcher = searchByName();
         } else if (argsSearch.type().equals("mask")) {
-            if (argsSearch.name().startsWith("*")) {
-                if (argsSearch.name().endsWith("*")) {
-                    searcher = new Searcher(path -> path.getFileName().toString().contains(argsSearch.name().replaceAll("\\*", "")));
-                } else {
-                    searcher = new Searcher(path -> path.getFileName().toString().endsWith(argsSearch.name().replaceAll("\\*", "")));
-                }
-
-            } else if (argsSearch.name().endsWith("*")) {
-                searcher = new Searcher(path -> path.getFileName().toString().startsWith(argsSearch.name().replaceAll("\\*", "")));
-            }
+            searcher = searchByRegex(preparePattern(argsSearch.name()));
+        } else {
+            searcher = searchByRegex(argsSearch.name());
         }
         Files.walkFileTree(Paths.get(argsSearch.directory()), searcher);
         foundFiles = searcher.getPathList();
         return foundFiles;
+    }
+
+    private Searcher searchByRegex(String str) {
+        Pattern pattern = Pattern.compile(str);
+        return new Searcher(path -> pattern.matcher(path.getFileName().toString()).matches());
+    }
+
+    private Searcher searchByName() {
+        return new Searcher(path -> path.getFileName().toString().equals(argsSearch.name()));
     }
 
     public void recInFile() throws IOException {
@@ -45,7 +51,6 @@ public class MainSearch {
             for (Path path: res) {
                 writer.write(path.toAbsolutePath().toString());
                 writer.newLine();
-
             }
         }
     }
