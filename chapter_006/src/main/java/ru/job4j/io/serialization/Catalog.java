@@ -27,9 +27,10 @@ public class Catalog {
 
     @Override
     public String toString() {
-        return "Catalog{" +
-                "book=" + book +
-                '}';
+        return "Catalog{"
+                + "book="
+                + book
+                + '}';
     }
 
     @XmlElement(value = "book")
@@ -54,11 +55,15 @@ public class Catalog {
 
         @Override
         public String toString() {
-            return "Book{" +
-                    "availability=" + availability +
-                    ", author='" + author + '\'' +
-                    ", isbn=" + isbn +
-                    '}';
+            return "Book{"
+                    + "availability="
+                    + availability
+                    + ", author='"
+                    + author
+                    + '\''
+                    + ", isbn="
+                    + isbn
+                    + '}';
         }
     }
     public static void main(String[] args) throws JAXBException, IOException {

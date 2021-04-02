@@ -16,13 +16,19 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "res=" + res +
-                ", number=" + number +
-                ", name='" + name + '\'' +
-                ", person=" + person +
-                ", years=" + Arrays.toString(years) +
-                '}';
+        return "Car{"
+                + "res="
+                + res
+                + ", number="
+                + number
+                + ", name='"
+                + name
+                + '\''
+                + ", person="
+                + person
+                + ", years="
+                + Arrays.toString(years)
+                + '}';
     }
 
     public Car(boolean res, int number, String name, Person person, int[] years) {
@@ -72,7 +78,7 @@ public class Car {
 
     public static void main(String[] args) {
         /* JSONObject из json-строки строки */
-        JSONObject jsonPerson = new JSONObject("{\"id\":\"1245\", \"number\":\"654\"}" );
+        JSONObject jsonPerson = new JSONObject("{\"id\":\"1245\", \"number\":\"654\"}");
         /* JSONObject напрямую методом put */
         final Car car = new Car(true, 254, "BMW", new Person("1245", 654), new int[]{1980, 1982, 1952});
         JSONObject jsonObject = new JSONObject();

@@ -8,7 +8,7 @@ public class Person {
         this.number = number;
     }
 
-    public Person() {}
+    public Person() { }
 
     public String getId() {
         return id;
