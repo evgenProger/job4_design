@@ -1,12 +1,12 @@
 CREATE TABLE "user" (
   "id"  SERIAL PRIMARY KEY,
-  "name" varchar(200)
+  "name" varchar(200),
+  role_id int references role(id)
 );
 
 CREATE TABLE "role" (
   "id"  SERIAL  PRIMARY KEY,
-  "name" varchar(2000),
-  "user_id" int references "user"(id)
+  "name" varchar(2000)
 );
 
 CREATE TABLE "rules" (

@@ -42,7 +42,7 @@ insert into "attachs"(name, item_id) VALUES ('answer', 4);
 insert into comments(comment, item_id) VALUES ('thank you', 2);
 insert into comments(comment, item_id) VALUES ('I am satisfied' , 2);
 insert into comments(comment, item_id) VALUES ('everything is bad' , 1);
-insert into comments(comment, item_id) VALUES ('sorry for delay' , 3);
+insert into comments(comment, item_id) VALUES ('sorry for delay' , 3)
 
 
 
