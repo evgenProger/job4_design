@@ -7,8 +7,6 @@ create table games
 	year date
 );
 
-
-
 create table players (
     id   serial primary key,
     name varchar(50),
