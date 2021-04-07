@@ -57,6 +57,9 @@ select tF.name from typeFood as tF join food f on tF.id = f.type_id
 group by tF.name
 having count(f.name) < 5;
 
+select f.name as name, tF.name as type  from food as f
+join typeFood tF on tF.id = f.type_id
+
 
 
 
