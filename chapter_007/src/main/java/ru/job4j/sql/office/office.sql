@@ -62,7 +62,7 @@ full join dept d on e.dept_id = d.id;
 
 select * from emp cross join dept;
 
-select d.name from emp e
+select d.name as department from emp e
 left join dept d on e.dept_id = d.id
 where e.name is null
 
