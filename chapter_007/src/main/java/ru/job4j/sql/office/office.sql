@@ -54,8 +54,11 @@ insert into emp(dept_id) VALUES (4);
 select e.name as emplayer, d.name as department from emp as e
 left join dept d on e.dept_id = d.id;
 
+select e.name as emplayer, d.name as department from emp as e
+right join  dept d on e.dept_id = d.id;
+
 select d.name as department, e.name as emplayers from dept as d
-    right join emp as e on d.id = e.dept_id;
+right join emp as e on d.id = e.dept_id;
 
 select e.name as emplayer, d.name as department from emp as e
 full join dept d on e.dept_id = d.id;
