@@ -51,6 +51,8 @@ insert into emp(name, dept_id) values ('Lenny', null);
 
 insert into emp(dept_id) VALUES (4);
 
+insert into emp(name, dept_id) VALUES (null, 1);
+
 select e.name as emplayer, d.name as department from emp as e
 left join dept d on e.dept_id = d.id;
 
@@ -65,8 +67,8 @@ full join dept d on e.dept_id = d.id;
 
 select * from emp cross join dept;
 
-select d.name as department from emp e
-left join dept d on e.dept_id = d.id
+select d.name as department from dept d
+left join emp e on e.dept_id = d.id
 where e.name is null
 
 
