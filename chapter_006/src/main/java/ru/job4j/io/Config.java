@@ -29,7 +29,6 @@ public class Config {
                 }
                 values.put(arr[0].trim(), arr[1].trim());
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
