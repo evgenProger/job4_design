@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import ru.job4j.io.Config;
 
-
-
 public class ConnectionDemo {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Config config = new Config("chapter_007/src/main/resources/app.properties");
@@ -25,7 +23,8 @@ public class ConnectionDemo {
             DatabaseMetaData metaData = connection.getMetaData();
             System.out.println(metaData.getUserName());
             System.out.println(metaData.getURL());
-       }
+        }
     }
 }
+
 

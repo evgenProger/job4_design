@@ -69,6 +69,9 @@ right join engine e on c.engine_id = e.id where c.name is null;
 select t.type as car from car as c
 right join  transmission t on c.transmission_id = t.id where c.name is null;
 
+select * from myTable;
+
+
 
 
 

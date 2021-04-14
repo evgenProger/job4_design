@@ -1,5 +1,9 @@
 package ru.job4j.sql.jdbc;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
@@ -13,40 +17,47 @@ public class TableEditor implements AutoCloseable {
     }
 
     private void initConnection() throws SQLException, ClassNotFoundException {
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/idea_db",
-                "postgres", "password");
-
+       String driver = properties.getProperty("driver");
+       Class.forName(driver);
+       String url = properties.getProperty("url");
+       String login = properties.getProperty("login");
+       String password = properties.getProperty("password");
+       connection = DriverManager.getConnection(url, login, password);
     }
 
     public void createTable(String tableName) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            String sql = "CREATE TABLE tableName";
+            String sql = String.format("create table %s (id serial primary key);", tableName);
             statement.execute(sql);
         }
     }
 
     public void dropTable(String tableName) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            String sql = "Drop table tableName";
+            String sql = String.format("Drop table %s", tableName);
             statement.execute(sql);
         }
     }
 
     public void addColumn(String tableName, String columnName, String type) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            String sql = "ALTER table tableName ADD columnName type";
+            String sql = String.format("ALTER table %s ADD %s %s", tableName, columnName, type);
             statement.execute(sql);
         }
     }
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            String sql = "ALTER table tableName DROP COLUMN columnName";
+            String sql = String.format("ALTER table %s DROP COLUMN %s", tableName, columnName);
             statement.execute(sql);
         }
     }
 
-    public void renameColumn(String tableName, String columnName, String newColumnName) {
+    public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
+        try (Statement statement = connection.createStatement()) {
+            String sql = String.format("ALTER TABLE %s RENAME %s TO %s", tableName, columnName, newColumnName);
+            statement.execute(sql);
+        }
 
     }
 
@@ -64,9 +75,19 @@ public class TableEditor implements AutoCloseable {
         return scheme.toString();
     }
 
+    public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
+       FileReader reader = new FileReader("chapter_007/src/main/resources/app.properties");
+       Properties properties = new Properties();
+       properties.load(reader);
+       TableEditor tableEditor = new TableEditor(properties);
+       tableEditor.renameColumn("mytable", "id", "name");
+        System.out.println(tableEditor.getScheme("mytable"));
+    }
 
     @Override
     public void close() throws Exception {
-
+        if (connection != null) {
+            connection.close();
+        }
     }
 }
