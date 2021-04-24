@@ -20,7 +20,7 @@ public class ImportDB {
     public List<User> load() {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
-            rd.lines().map(s -> new User(s.split(";")[0], s.split(";")[1])).forEach(users::add);
+            rd.lines().map(s -> s.split(";")).map(arr -> new User(arr[0], arr[1])).forEach(users::add);
         } catch (IOException e) {
             e.printStackTrace();
         }
