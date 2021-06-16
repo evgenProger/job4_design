@@ -1,9 +1,5 @@
 package ru.job4j;
 
-import com.carrotsearch.sizeof.RamUsageEstimator;
-
-import static com.carrotsearch.sizeof.RamUsageEstimator.sizeOf;
-
 public class User {
     private int age;
     private boolean married;
@@ -12,7 +8,6 @@ public class User {
         this.age = age;
         this.married = married;
     }
-
 
     @Override
     protected void finalize() {
