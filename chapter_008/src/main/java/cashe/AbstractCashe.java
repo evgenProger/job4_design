@@ -1,0 +1,23 @@
+package cashe;
+
+import java.io.IOException;
+import java.lang.ref.SoftReference;
+import java.util.HashMap;
+import java.util.Map;
+
+public abstract class AbstractCashe<K, V> {
+    protected final Map<K, SoftReference<V>> cashe = new HashMap<>();
+
+    public void put(K key, V value) {
+        cashe.put(key, new SoftReference<>(value));
+
+    }
+
+    public V get(K key) {
+        return cashe.get(key).get();
+    }
+
+    protected abstract V load(K key) throws IOException;
+}
+
+
