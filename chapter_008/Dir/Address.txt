@@ -1,0 +1,3 @@
+Krasnodar, Lenin's st, 49;
+Moscow, Petr's sr, 98;
+New York, 45'th avenu, 125;

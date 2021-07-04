@@ -7,19 +7,19 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
-public class DirFileCashe extends AbstractCashe<String, String> {
+public class DirFileCash extends AbstractCashe<String, String> {
     private final String cachingDir;
 
-    public DirFileCashe(String cachingDir) {
+    public DirFileCash(String cachingDir) {
         this.cachingDir = cachingDir;
     }
 
-
     @Override
     protected String load(String key) throws IOException {
-        String value = this.get(key);
-        if (value == null) {
-            value = Files.lines(Paths.get(cachingDir + File.separator +  key), StandardCharsets.UTF_8).collect(Collectors.joining());
+        String path = cachingDir + File.separator + key;
+        String value = null;
+        if (!this.cashe.containsKey(key)) {
+            value = Files.lines(Paths.get(path), StandardCharsets.UTF_8).collect(Collectors.joining());
             this.put(key, value);
         }
         return value;

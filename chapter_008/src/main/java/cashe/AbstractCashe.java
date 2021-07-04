@@ -8,8 +8,9 @@ import java.util.Map;
 public abstract class AbstractCashe<K, V> {
     protected final Map<K, SoftReference<V>> cashe = new HashMap<>();
 
-    public void put(K key, V value) {
-        cashe.put(key, new SoftReference<>(value));
+    public void put(K key, V value) throws IOException {
+
+        cashe.put(key, new SoftReference<V>(value));
 
     }
 
