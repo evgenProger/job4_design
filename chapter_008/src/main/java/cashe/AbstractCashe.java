@@ -17,6 +17,7 @@ public abstract class AbstractCashe<K, V> {
         if (value == null) {
             value = load(key);
         }
+        put(key, value);
         return value;
     }
 
