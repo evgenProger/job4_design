@@ -17,6 +17,6 @@ public class DirFileCash extends AbstractCashe<String, String> {
     @Override
     protected String load(String key) throws IOException {
         String path = cachingDir + File.separator + key;
-        return Files.lines(Paths.get(path), StandardCharsets.UTF_8).collect(Collectors.joining());
+        return Files.readString(Paths.get(path));
     }
 }

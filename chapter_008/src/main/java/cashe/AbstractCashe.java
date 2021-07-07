@@ -13,11 +13,12 @@ public abstract class AbstractCashe<K, V> {
     }
 
     public V get(K key) throws IOException {
-        V value = cashe.get(key).get();
+        V value =  cashe.getOrDefault(key,  new SoftReference<V>(null)).get();
         if (value == null) {
             value = load(key);
+            put(key, value);
         }
-        put(key, value);
+
         return value;
     }
 

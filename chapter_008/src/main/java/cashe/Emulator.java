@@ -20,17 +20,17 @@ public class Emulator {
         System.out.println("Enter cashing directory");
         Scanner input = new Scanner(System.in);
         String path = input.nextLine();
-        DirFileCash dirFileCash = new DirFileCash(path);
+        AbstractCashe<String, String> cashe = new DirFileCash(path);
         System.out.println("Enter file name");
         String fileName = input.nextLine();
         while (userChoice != 3) {
             System.out.println("Select menu item");
             userChoice = menu();
             if (userChoice == 1) {
-                dirFileCash.load(fileName);
+                cashe.get(fileName);
             }
             if (userChoice == 2) {
-                System.out.println(dirFileCash.get(fileName));
+                System.out.println(cashe.get(fileName));
             }
         }
     }
