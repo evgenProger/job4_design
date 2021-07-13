@@ -8,13 +8,11 @@ import java.util.function.Predicate;
 
 public class MaxMin {
     private <T> T findByMaxMin(List<T> value, Comparator<T> comparator, Predicate<Integer> predicate) {
-        T current;
-        T variable = null;
-        for (int i = 0; i < value.size() - 1; i++) {
-            current = value.get(i);
-            int result = comparator.compare(value.get(i + 1), current);
+        T variable = value.get(0);
+        for (int i = 0; i < value.size(); i++) {
+            int result = comparator.compare(value.get(i), variable);
             if (predicate.test(result)) {
-                variable = value.get(i + 1);
+                variable = value.get(i);
             }
         }
         return variable;

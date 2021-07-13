@@ -24,6 +24,13 @@ public class MaxMinTest {
         List<Integer> numbers = List.of(2, 5, 4, 15, 9, 1);
         int result = maxMin.min(numbers, Comparator.comparingInt(integer -> integer));
         assertThat(result, is(1));
+    }
 
+    @Test
+    public void whenListSizeOneThenGetValue() {
+        MaxMin maxMin = new MaxMin();
+        List<Integer> numbers = List.of(4);
+        int result = maxMin.min(numbers, Comparator.comparingInt(integer -> integer));
+        assertThat(result, is(4));
     }
 }
