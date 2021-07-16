@@ -1,4 +1,4 @@
-package ru.job4.tdd;
+package ru.job4j.tdd;
 
 public interface Ticket {
 }
