@@ -44,6 +44,7 @@ public class CinemaTest {
         Cinema cinema = new Cinema3D();
         Calendar date = Calendar.getInstance();
         date.set(2020, 10, 10, 23, 00);
+        Ticket ticket =  cinema.buy(account, 1, 1, date);
         cinema.buy(account, 1, 1, date);
     }
 
@@ -53,7 +54,6 @@ public class CinemaTest {
         Cinema cinema = new Cinema3D();
         Calendar date = Calendar.getInstance();
         date.set(1901, 10, 10, 23, 00);
-        Ticket ticket = cinema.buy(account, 1, 1, date);
         cinema.buy(account, 1, 1, date);
     }
 
@@ -65,5 +65,4 @@ public class CinemaTest {
         date.set(2020, 10, 10, 23, 00);
         cinema.buy(account, 1, 154, date);
     }
-
 }
