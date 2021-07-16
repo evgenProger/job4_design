@@ -49,7 +49,7 @@ public class CinemaTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenDateNotCorrectThenException() {
+    public void whenDateIsNotCorrectThenException() {
         Account account = new AccountCinema();
         Cinema cinema = new Cinema3D();
         Calendar date = Calendar.getInstance();
