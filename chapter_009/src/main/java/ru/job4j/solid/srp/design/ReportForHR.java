@@ -17,7 +17,7 @@ public class ReportForHR implements Report {
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
         List<Employee> emp = store.findBy(filter);
-        Collections.sort(emp, new ComparatorBySalary().reversed());
+        emp.sort(new ComparatorBySalary().reversed());
         text.append("Name; Salary;")
         .append(System.lineSeparator());
         for (Employee employee : emp) {
