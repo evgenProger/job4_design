@@ -124,7 +124,8 @@ public class ReportTest {
 
     @Test
     public void whenGenerateJSON() {
-        JSONArray expect = new JSONArray();
+
+        StringBuilder text = new StringBuilder();
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -133,26 +134,27 @@ public class ReportTest {
         store.add(worker);
         store.add(workerTwo);
         Report engine = new ReportToJson(store);
-        for (Employee emp : store.findBy(employee -> true)) {
-            JSONObject jsonEmployees = new JSONObject();
-            jsonEmployees.put("name", emp.getName());
-            jsonEmployees.put("hired", dateFormat.format(emp.getHired().getTime()));
-            jsonEmployees.put("fired", dateFormat.format(emp.getFired().getTime()));
-            jsonEmployees.put("salary", emp.getSalary());
-            expect.put(jsonEmployees);
+        text.append("[");
+        Iterator<Employee> itEmp = store.findBy(employee -> true).iterator();
+        while (itEmp.hasNext()) {
+            Employee emp = itEmp.next();
+            String expect = String.format("%s\"fired\":\"%s\", \"name\":\"%s\", \"hired\":\"%s\", \"salary\": %s %s",
+                    "{",
+                    dateFormat.format(emp.getFired().getTime()),
+                    emp.getName(),
+                    dateFormat.format(emp.getHired().getTime()),
+                    emp.getSalary(), "}");
+            text.append(expect);
+            if (itEmp.hasNext()) {
+                text.append(",");
+            }
         }
-        assertThat(engine.generate(employee -> true), is(expect.toString()));
+        text.append("]");
+        assertThat(engine.generate(employee -> true).replaceAll(" ", ""),
+                is(text.toString().replaceAll(" ", "")));
     }
 }
 
-    /*
-      String expect = String.format("%s\"fired\":\"%s\", \"name\":\"%s\",  \"hired\":\"%s\", \"salary\": %s %s",
-                    "{",
-                    dateFormat.format(emp.getFired().getTime()),
-                    emp.getName(), dateFormat.format(emp.getHired().getTime()),
-                    emp.getSalary(), "}");
 
-            text.append(expect);
-     */
 
 
