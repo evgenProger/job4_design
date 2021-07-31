@@ -1,4 +1,4 @@
-package ru.job4j.solid.srp.design;
+package ru.job4j.solid.design;
 
 import java.util.function.Predicate;
 

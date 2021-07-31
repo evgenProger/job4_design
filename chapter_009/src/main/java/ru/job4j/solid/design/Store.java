@@ -1,5 +1,6 @@
-package ru.job4j.solid.srp.design;
+package ru.job4j.solid.design;
 
+import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 import java.util.function.Predicate;
 

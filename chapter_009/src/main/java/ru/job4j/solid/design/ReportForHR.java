@@ -1,7 +1,6 @@
-package ru.job4j.solid.srp.design;
+package ru.job4j.solid.design;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
