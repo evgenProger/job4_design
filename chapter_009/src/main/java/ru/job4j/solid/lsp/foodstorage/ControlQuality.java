@@ -7,16 +7,16 @@ import java.util.function.Predicate;
 
 public class ControlQuality implements Strategy {
 
-    private Predicate<Food> predicate;
+    private Predicate<Double> predicate;
 
-    public ControlQuality(Predicate<Food> predicate) {
+    public ControlQuality(Predicate<Double> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public List<Food> direct(Food food) {
         List<Food> foods = new ArrayList<>();
-        if (predicate.test(food)) {
+        if (predicate.test(this.percentExpired(food))) {
             foods.add(food);
         }
         return foods;
