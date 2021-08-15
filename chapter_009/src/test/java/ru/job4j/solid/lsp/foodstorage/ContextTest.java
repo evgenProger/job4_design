@@ -54,8 +54,8 @@ public class ContextTest {
 
     @Test
     public void whenExpiredDateFreshThenDiscount() {
-        FoodWithDiscount foodWithDiscount = new FoodWithDiscount();
-        Context context = new Context(foodWithDiscount);
+        Shop shop = new Shop();
+        Context context = new Context(shop);
         Calendar expiredDate = Calendar.getInstance();
         expiredDate.add(Calendar.DAY_OF_MONTH, +30);
         Calendar createDate = Calendar.getInstance();
@@ -63,7 +63,7 @@ public class ContextTest {
         Food food = new Food("Milk", expiredDate, createDate, 60.2, 0);
         List<Food> foods = new ArrayList<>();
         foods.addAll(context.executeStrategy(food));
-        assertThat(foods.get(0).getDiscount(), is(5.0));
+        assertThat(foods.get(0).getDiscount(), is(10.0));
     }
 
     @Test
@@ -71,10 +71,8 @@ public class ContextTest {
         Warehouse warehouse = new Warehouse();
         Trash trash = new Trash();
         Shop shop = new Shop();
-        FoodWithDiscount foodWithDiscount = new FoodWithDiscount();
         Context contextWarehouse = new Context(warehouse);
         Context contextTrash = new Context(trash);
-        Context contextDiscount = new Context(foodWithDiscount);
         Context contextShop = new Context(shop);
         Calendar expiredDateForWarehouse = Calendar.getInstance();
         expiredDateForWarehouse.add(Calendar.DAY_OF_MONTH, +20);
@@ -99,7 +97,7 @@ public class ContextTest {
         assertThat(contextWarehouse.executeStrategy(toWarehouse).get(0).getName(), is("Milk"));
         assertThat(contextTrash.executeStrategy(toTrash).get(0).getName(), is("Sour Cream"));
         assertThat(contextShop.executeStrategy(toShop).get(0).getName(), is("Meat"));
-        assertThat(contextDiscount.executeStrategy(toDiscount).get(0).getName(), is("Ice cream"));
+        assertThat(contextShop.executeStrategy(toDiscount).get(0).getDiscount(), is(10.0));
     }
 
 

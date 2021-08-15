@@ -12,7 +12,12 @@ public class Shop implements Strategy {
         List<Food> foods = new ArrayList<>();
         ControlQuality controlQuality = new ControlQuality();
         predicate = p -> p > 25 && p <= 75;
+        Predicate<Double> discount = p -> p > 75;
         if (predicate.test(controlQuality.percentExpired(food))) {
+            foods.add(food);
+        }
+         else if (discount.test(controlQuality.percentExpired(food))) {
+            food.setDiscount(10);
             foods.add(food);
         };
         return foods;
