@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Warehouse implements Strategy {
+    ControlQuality controlQuality;
 
     @Override
     public List<Food> direct(Food food) {
 
-         Predicate<Food> predicate;
+
          return null;
     }
 }
