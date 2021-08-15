@@ -7,14 +7,9 @@ import java.util.function.Predicate;
 
 public class ControlQuality implements Strategy {
 
-    private Predicate<Double> predicate;
-
-    public ControlQuality(Predicate<Double> predicate) {
-        this.predicate = predicate;
-    }
 
     @Override
-    public List<Food> direct(Food food) {
+    public List<Food> direct(Food food, Predicate<Double> predicate) {
         List<Food> foods = new ArrayList<>();
         if (predicate.test(this.percentExpired(food))) {
             foods.add(food);
