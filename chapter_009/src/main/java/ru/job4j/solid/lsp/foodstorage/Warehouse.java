@@ -1,21 +1,35 @@
 package ru.job4j.solid.lsp.foodstorage;
 
-import javax.swing.event.ListDataEvent;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.function.Predicate;
 
-public class Warehouse implements Strategy {
+public class Warehouse implements Store {
 
-    @Override
-    public List<Food> direct(Food food, Predicate<Double> predicate) {
+
+   /* public List<Food> direct(Food food) {
         List<Food> foods = new ArrayList<>();
         ControlQuality controlQuality = new ControlQuality();
-        predicate = p -> p <= 25;
+        Predicate<Double> predicate = p -> p <= 25;
         if (predicate.test(controlQuality.percentExpired(food))) {
             foods.add(food);
         };
          return foods;
+    }
+    */
+
+    @Override
+    public boolean accept(Food food) {
+        boolean res = false;
+        PercentCount percentCount = new PercentCount();
+        if (percentCount.percentExpired(food) <= 25) {
+            res = true;
+        }
+        return res;
+    }
+
+    @Override
+    public void add(Food food) {
+        List<Food> foods = new ArrayList<>();
+        foods.add(food);
     }
 }

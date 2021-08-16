@@ -7,14 +7,15 @@ import java.util.function.Predicate;
 public class Context {
 
     Predicate<Double> predicate;
-    Strategy strategy;
+    Store strategy;
 
-    public Context(Strategy strategy) {
+    public Context(Store strategy) {
         this.strategy = strategy;
     }
 
     public List<Food> executeStrategy(Food food) {
-        List<Food> foods = new ArrayList<>(strategy.direct(food, predicate));
+        List<Food> foods = new ArrayList<>();
+        foods.add(food);
         return foods;
     }
 }

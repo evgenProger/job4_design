@@ -1,5 +1,6 @@
 package ru.job4j.solid.lsp.foodstorage;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -9,63 +10,75 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
-public class ContextTest {
+public class ControlTest {
+
+    private List<Store> stores = new ArrayList<>();
+
+  /*  @Before
+    public void fillingStores() {
+        Warehouse warehouse = new Warehouse();
+        Shop shop = new Shop();
+        Trash trash = new Trash();
+        stores.add(warehouse);
+        stores.add(shop);
+        stores.add(trash);
+    }
+   */
+
     @Test
     public void whenExpiredDateLessThen25PercentThenToWarehouse() {
+        List<Store> stores = new ArrayList<>();
         Warehouse warehouse = new Warehouse();
-        Context context = new Context(warehouse);
+        stores.add(warehouse);
         Calendar expiredDate = Calendar.getInstance();
         expiredDate.add(Calendar.DAY_OF_MONTH, +20);
         Calendar createDate = Calendar.getInstance();
         createDate.add(Calendar.DAY_OF_MONTH, -80);
         Food food = new Food("Milk", expiredDate, createDate, 60.2, 5);
-        List<Food> foods = new ArrayList<>();
-        foods.addAll(context.executeStrategy(food));
-        assertThat(foods.get(0).getName(), is("Milk"));
+        assertTrue(stores.get(0).accept(food));
     }
 
     @Test
     public void whenExpiredDateEndThenToTrash() {
         Trash trash = new Trash();
-        Context context = new Context(trash);
+        List<Store> stores = new ArrayList<>();
+        stores.add(trash);
         Calendar expiredDate = Calendar.getInstance();
         expiredDate.add(Calendar.DAY_OF_MONTH, -1);
         Calendar createDate = Calendar.getInstance();
         createDate.add(Calendar.DAY_OF_MONTH, -50);
         Food food = new Food("Milk", expiredDate, createDate, 60.2, 5);
-        List<Food> foods = new ArrayList<>();
-        foods.addAll(context.executeStrategy(food));
-        assertThat(foods.get(0).getName(), is("Milk"));
+        assertTrue(stores.get(0).accept(food));
+
     }
 
     @Test
     public void whenExpiredDateFineThenToShop() {
         Shop shop = new Shop();
-        Context context = new Context(shop);
+        List<Store> stores = new ArrayList<>();
+        stores.add(shop);
         Calendar expiredDate = Calendar.getInstance();
         expiredDate.add(Calendar.DAY_OF_MONTH, +10);
         Calendar createDate = Calendar.getInstance();
         createDate.add(Calendar.DAY_OF_MONTH, -5);
         Food food = new Food("Milk", expiredDate, createDate, 60.2, 5);
-        List<Food> foods = new ArrayList<>();
-        foods.addAll(context.executeStrategy(food));
-        assertThat(foods.get(0).getName(), is("Milk"));
+        assertTrue(stores.get(0).accept(food));
     }
 
     @Test
     public void whenExpiredDateFreshThenDiscount() {
         Shop shop = new Shop();
-        Context context = new Context(shop);
+        List<Store> stores = new ArrayList<>();
+        stores.add(shop);
         Calendar expiredDate = Calendar.getInstance();
         expiredDate.add(Calendar.DAY_OF_MONTH, +30);
         Calendar createDate = Calendar.getInstance();
         createDate.add(Calendar.DAY_OF_MONTH, -1);
         Food food = new Food("Milk", expiredDate, createDate, 60.2, 0);
-        List<Food> foods = new ArrayList<>();
-        foods.addAll(context.executeStrategy(food));
-        assertThat(foods.get(0).getDiscount(), is(10.0));
+        assertTrue(stores.get(0).accept(food));
     }
 
+    /*
     @Test
     public void whenDirectFoodToPlace() {
         Warehouse warehouse = new Warehouse();
@@ -100,6 +113,5 @@ public class ContextTest {
         assertThat(contextShop.executeStrategy(toDiscount).get(0).getDiscount(), is(10.0));
     }
 
-
-
+     */
 }
