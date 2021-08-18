@@ -15,12 +15,14 @@ public class ControlTest {
     private List<Store> stores = new ArrayList<>();
     private ControlQuality controlQuality;
     private Warehouse warehouse;
+    private Trash trash;
+    private Shop shop;
 
     @Before
     public void fillingStores() {
         warehouse = new Warehouse();
-        Shop shop = new Shop();
-        Trash trash = new Trash();
+        shop = new Shop();
+        trash = new Trash();
         stores.add(warehouse);
         stores.add(shop);
         stores.add(trash);
@@ -41,53 +43,40 @@ public class ControlTest {
 
     @Test
     public void whenExpiredDateEndThenToTrash() {
-        Trash trash = new Trash();
-        List<Store> stores = new ArrayList<>();
-        stores.add(trash);
         Calendar expiredDate = Calendar.getInstance();
         expiredDate.add(Calendar.DAY_OF_MONTH, -1);
         Calendar createDate = Calendar.getInstance();
         createDate.add(Calendar.DAY_OF_MONTH, -50);
         Food food = new Food("Milk", expiredDate, createDate, 60.2, 5);
-        assertTrue(stores.get(0).accept(food));
+        controlQuality.distribute(food);
+        assertThat(trash.getFoods().get(0).getName(), is("Milk"));
 
     }
 
     @Test
     public void whenExpiredDateFineThenToShop() {
-        Shop shop = new Shop();
-        List<Store> stores = new ArrayList<>();
-        stores.add(shop);
         Calendar expiredDate = Calendar.getInstance();
         expiredDate.add(Calendar.DAY_OF_MONTH, +10);
         Calendar createDate = Calendar.getInstance();
         createDate.add(Calendar.DAY_OF_MONTH, -5);
-        Food food = new Food("Milk", expiredDate, createDate, 60.2, 5);
-        assertTrue(stores.get(0).accept(food));
+        Food food = new Food("Milk", expiredDate, createDate, 60.2, 0);
+        controlQuality.distribute(food);
+        assertThat(shop.getFoods().get(0).getName(), is("Milk"));
     }
 
     @Test
     public void whenExpiredDateFreshThenDiscount() {
-        Shop shop = new Shop();
-        List<Store> stores = new ArrayList<>();
-        stores.add(shop);
         Calendar expiredDate = Calendar.getInstance();
         expiredDate.add(Calendar.DAY_OF_MONTH, +30);
         Calendar createDate = Calendar.getInstance();
         createDate.add(Calendar.DAY_OF_MONTH, -1);
         Food food = new Food("Milk", expiredDate, createDate, 60.2, 0);
-        assertTrue(stores.get(0).accept(food));
+        controlQuality.distribute(food);
+        assertThat(shop.getFoods().get(0).getDiscount(), is(10.0));
     }
 
-    /*
     @Test
     public void whenDirectFoodToPlace() {
-        Warehouse warehouse = new Warehouse();
-        Trash trash = new Trash();
-        Shop shop = new Shop();
-        Context contextWarehouse = new Context(warehouse);
-        Context contextTrash = new Context(trash);
-        Context contextShop = new Context(shop);
         Calendar expiredDateForWarehouse = Calendar.getInstance();
         expiredDateForWarehouse.add(Calendar.DAY_OF_MONTH, +20);
         Calendar createDateForWarehouse = Calendar.getInstance();
@@ -104,15 +93,17 @@ public class ControlTest {
         expiredDateForDiscount.add(Calendar.DAY_OF_MONTH, +30);
         Calendar createDateForDiscount = Calendar.getInstance();
         createDateForDiscount.add(Calendar.DAY_OF_MONTH, -1);
-        Food toWarehouse = new Food("Milk", expiredDateForWarehouse, createDateForWarehouse, 60.2, 0);
+        Food toWarehouse = new Food("Cheese", expiredDateForWarehouse, createDateForWarehouse, 60.2, 0);
         Food toTrash = new Food("Sour Cream", expiredDateForTrash, createDateForTrash, 87, 0);
         Food toShop = new Food("Meat", expiredDateForShop, createDateForShop, 124, 0);
         Food toDiscount = new Food("Ice cream", expiredDateForDiscount, createDateForDiscount, 26, 0);
-        assertThat(contextWarehouse.executeStrategy(toWarehouse).get(0).getName(), is("Milk"));
-        assertThat(contextTrash.executeStrategy(toTrash).get(0).getName(), is("Sour Cream"));
-        assertThat(contextShop.executeStrategy(toShop).get(0).getName(), is("Meat"));
-        assertThat(contextShop.executeStrategy(toDiscount).get(0).getDiscount(), is(10.0));
+        controlQuality.distribute(toWarehouse);
+        controlQuality.distribute(toTrash);
+        controlQuality.distribute(toShop);
+        controlQuality.distribute(toDiscount);
+        assertThat(warehouse.getFoods().get(0).getName(), is("Cheese"));
+        assertThat(trash.getFoods().get(0).getName(), is("Sour Cream"));
+        assertThat(shop.getFoods().get(0).getName(), is("Meat"));
+        assertThat(shop.getFoods().get(1).getDiscount(), is(10.0));
     }
-
-     */
 }
