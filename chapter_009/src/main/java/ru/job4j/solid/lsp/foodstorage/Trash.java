@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Trash implements Store {
 
+   private List<Food> foods = new ArrayList<>();
+
     @Override
     public boolean accept(Food food) {
         boolean res = false;
@@ -17,7 +19,11 @@ public class Trash implements Store {
 
     @Override
     public void add(Food food) {
-        List<Food> foods = new ArrayList<>();
+
         foods.add(food);
+    }
+
+    public List<Food> getFoods() {
+        return foods;
     }
 }

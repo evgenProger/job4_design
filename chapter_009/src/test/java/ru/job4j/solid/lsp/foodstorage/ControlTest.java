@@ -13,29 +13,30 @@ import static org.junit.Assert.*;
 public class ControlTest {
 
     private List<Store> stores = new ArrayList<>();
+    private ControlQuality controlQuality;
+    private Warehouse warehouse;
 
-  /*  @Before
+    @Before
     public void fillingStores() {
-        Warehouse warehouse = new Warehouse();
+        warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
         stores.add(warehouse);
         stores.add(shop);
         stores.add(trash);
+        controlQuality = new ControlQuality(stores);
+
     }
-   */
 
     @Test
     public void whenExpiredDateLessThen25PercentThenToWarehouse() {
-        List<Store> stores = new ArrayList<>();
-        Warehouse warehouse = new Warehouse();
-        stores.add(warehouse);
         Calendar expiredDate = Calendar.getInstance();
         expiredDate.add(Calendar.DAY_OF_MONTH, +20);
         Calendar createDate = Calendar.getInstance();
         createDate.add(Calendar.DAY_OF_MONTH, -80);
         Food food = new Food("Milk", expiredDate, createDate, 60.2, 5);
-        assertTrue(stores.get(0).accept(food));
+        controlQuality.distribute(food);
+        assertThat(warehouse.getFoods().get(0).getName(), is("Milk"));
     }
 
     @Test
