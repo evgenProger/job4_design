@@ -105,5 +105,8 @@ public class ControlTest {
         assertThat(trash.getFoods().get(0).getName(), is("Sour Cream"));
         assertThat(shop.getFoods().get(0).getName(), is("Meat"));
         assertThat(shop.getFoods().get(1).getDiscount(), is(10.0));
+        assertThat(warehouse.getFoods().size(), is(1));
+        assertThat(trash.getFoods().size(), is(1));
+        assertThat(shop.getFoods().size(), is(2));
     }
 }

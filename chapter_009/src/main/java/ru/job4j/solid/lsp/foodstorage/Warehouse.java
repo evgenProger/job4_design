@@ -12,7 +12,7 @@ public class Warehouse implements Store {
     public boolean accept(Food food) {
         boolean res = false;
         PercentCount percentCount = new PercentCount();
-        if (percentCount.percentExpired(food) <= 25) {
+        if (percentCount.percentExpired(food) > 0 && percentCount.percentExpired(food) <= 25) {
             res = true;
         }
         return res;
