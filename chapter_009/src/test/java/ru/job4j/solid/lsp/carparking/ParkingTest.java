@@ -1,93 +1,72 @@
 package ru.job4j.solid.lsp.carparking;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class ParkingTest {
+   private Car lightCar;
+   private Car truck;
+
+   @Before
+   public void initialCars() {
+      lightCar = new LightCar();
+      truck = new Truck(3);
+   }
+
    @Test
     public void whenParkingLotForLightCarFreeThenTrue() {
-       Car lightCar = new LightCar();
        ParkingLot parkingLot = new ParkingLot(new Car[1]);
-       Car[] arrParking = parkingLot.getNumberOfParkingSpaces();
-       arrParking[0] = lightCar;
-       parkingLot.setNumberOfParkingSpaces(arrParking);
        assertTrue(lightCar.move(lightCar, parkingLot ));
    }
 
    @Test
-   public void whenParkingLotNumberOneForLightCarTakenThenFalse() {
-      Car lightCar = new LightCar();
-      Car truck = new Truck(3);
-      ParkingLot parkingLot = new ParkingLot(new Car[3]);
-      Car[] arrParking = parkingLot.getNumberOfParkingSpaces();
-      arrParking[0] = truck;
-      parkingLot.setNumberOfParkingSpaces(arrParking);
-      assertFalse(lightCar.move(lightCar, parkingLot));
-   }
-
-   @Test
-   public void whenParkingLotNumberTwoForLightCarTakenThenFalse() {
-      Car lightCar = new LightCar();
-      Car truck = new Truck(3);
-      ParkingLot parkingLot = new ParkingLot(new Car[3]);
-      Car[] arrParking = parkingLot.getNumberOfParkingSpaces();
-      arrParking[1] = truck;
-      parkingLot.setNumberOfParkingSpaces(arrParking);
-      assertFalse(lightCar.move(lightCar, parkingLot));
-   }
-
-   @Test
-   public void whenParkingLotNumberThreeForLightCarTakenThenFalse() {
-      Car lightCar = new LightCar();
-      Car truck = new Truck(3);
-      ParkingLot parkingLot = new ParkingLot(new Car[3]);
-      Car[] arrParking = parkingLot.getNumberOfParkingSpaces();
-      arrParking[2] = truck;
-      parkingLot.setNumberOfParkingSpaces(arrParking);
+   public void whenParkingLotForLightCarTakenThenFalse() {
+      ParkingLot parkingLot = new ParkingLot(new Car[] {truck, truck , truck});
       assertFalse(lightCar.move(lightCar, parkingLot));
    }
 
    @Test
    public void whenParkingLotNumberOneForTruckTakenThenFalse() {
-      Car lightCar = new LightCar();
-      Car truck = new Truck(3);
-      ParkingLot parkingLot = new ParkingLot(new Car[3]);
-      Car[] arrParking = parkingLot.getNumberOfParkingSpaces();
-      arrParking[0] = lightCar;
-      parkingLot.setNumberOfParkingSpaces(arrParking);
+      ParkingLot parkingLot = new ParkingLot(new Car[] {lightCar, null, null});
       assertFalse(lightCar.move(truck, parkingLot));
    }
 
    @Test
    public void whenParkingLotNumberTwoForTruckTakenThenFalse() {
-      Car lightCar = new LightCar();
-      Car truck = new Truck(3);
-      ParkingLot parkingLot = new ParkingLot(new Car[3]);
-      Car[] arrParking = parkingLot.getNumberOfParkingSpaces();
-      arrParking[1] = lightCar;
-      parkingLot.setNumberOfParkingSpaces(arrParking);
+      ParkingLot parkingLot = new ParkingLot(new Car[] {null, lightCar, null});
       assertFalse(lightCar.move(truck, parkingLot));
    }
 
    @Test
    public void whenParkingLotNumberThreeForTruckTakenThenFalse() {
-      Car lightCar = new LightCar();
-      Car truck = new Truck(3);
-      ParkingLot parkingLot = new ParkingLot(new Car[3]);
-      Car[] arrParking = parkingLot.getNumberOfParkingSpaces();
-      arrParking[2] = lightCar;
-      parkingLot.setNumberOfParkingSpaces(arrParking);
+      ParkingLot parkingLot = new ParkingLot(new Car[] {null, null, lightCar});
       assertFalse(lightCar.move(truck, parkingLot));
    }
 
    @Test
    public void whenParkingLotForTruckFreeThenTrue() {
-      Car truck = new Truck(3);
       ParkingLot parkingLot = new ParkingLot(new Car[3]);
-      Car[] arrParking = parkingLot.getNumberOfParkingSpaces();
-      arrParking[0] = truck;
-      parkingLot.setNumberOfParkingSpaces(arrParking);
       assertTrue(truck.move(truck, parkingLot ));
+   }
+
+   @Test
+   public void whenParkingLotForLightCarAtFirstThenTrue() {
+      ParkingLot parkingLot = new ParkingLot(new Car[] {null, truck, truck, truck});
+      assertTrue(lightCar.move(lightCar, parkingLot));
+   }
+
+   @Test
+   public void whenParkingForBothCarsFree() {
+      ParkingLot parkingLot = new ParkingLot(new Car[4]);
+      assertTrue(lightCar.move(lightCar, parkingLot));
+      assertTrue(lightCar.move(truck, parkingLot));
+   }
+
+   @Test
+   public void whenParkingLotForLightCarAtTheEndFirstThenTrue() {
+      ParkingLot parkingLot = new ParkingLot(new Car[] {truck, truck, truck, null});
+      assertTrue(lightCar.move(lightCar, parkingLot));
    }
 }
