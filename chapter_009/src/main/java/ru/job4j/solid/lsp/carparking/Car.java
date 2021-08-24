@@ -8,4 +8,8 @@ public abstract class Car {
     public Car(int size) {
         this.size = size;
     }
+
+    protected boolean move(Car car, ParkingLot parkingLot) {
+        return false;
+    }
 }

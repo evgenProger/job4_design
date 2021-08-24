@@ -1,5 +1,5 @@
 package ru.job4j.solid.lsp.carparking;
 
 public interface Parking {
-    boolean move(Car car);
+    boolean move(Car car, ParkingLot parkingLot);
 }
