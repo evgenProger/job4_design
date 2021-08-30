@@ -1,18 +1,16 @@
 package ru.job4j.solid.lsp.carparking;
 
 public class ParkingLot {
-    protected Car[] numberOfParkingSpaces;
+    protected Car[] ParkingSpacesForLightCar;
+    protected Car[] ParkingSpacesForTrack;
 
-    public ParkingLot(Car[] numberOfParkingSpaces) {
-        this.numberOfParkingSpaces = numberOfParkingSpaces;
-    }
-
-
-    public Car[] getNumberOfParkingSpaces() {
-        return numberOfParkingSpaces;
-    }
-
-    public void setNumberOfParkingSpaces(Car[] numberOfParkingSpaces) {
-        this.numberOfParkingSpaces = numberOfParkingSpaces;
+    public ParkingLot(Car[] parkingSpacesForLightCar, Car[] parkingSpacesForTrack) {
+        ParkingSpacesForLightCar = parkingSpacesForLightCar;
+        ParkingSpacesForTrack = parkingSpacesForTrack;
     }
 }
+
+
+
+
+
