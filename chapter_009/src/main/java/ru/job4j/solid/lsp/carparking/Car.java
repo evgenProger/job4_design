@@ -1,15 +1,15 @@
 package ru.job4j.solid.lsp.carparking;
 
-public abstract class Car {
+public abstract class Car implements Parking {
 
     protected int size;
-
 
     public Car(int size) {
         this.size = size;
     }
 
-    protected boolean move(Car car, ParkingLot parkingLot) {
-        return false;
-    }
+    @Override
+    public abstract boolean move(ParkingSpaces parkingSpaces);
+
 }
+
