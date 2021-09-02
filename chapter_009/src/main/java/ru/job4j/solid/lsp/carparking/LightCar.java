@@ -9,7 +9,7 @@ public class LightCar extends Car implements Parking {
     }
 
     @Override
-    public boolean move(ParkingSpaces parkingSpaces) {
+    public Ticket move(ParkingSpaces parkingSpaces) {
         return false;
     }
 }

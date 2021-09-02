@@ -1,6 +1,5 @@
 package ru.job4j.solid.lsp.carparking;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -9,33 +8,33 @@ import static org.junit.Assert.*;
 public class ParkingTest {
 
    @Test
-    public void whenParkingLotForBothFreeThenTrue() {
+    public void whenParkingLotForBothFreeThenParking() {
        Car lightCar = new LightCar();
        Car truck = new Truck(3);
        ParkingSpaces parkingLot = new ParkingLot(1, 1);
-       assertTrue(lightCar.move(parkingLot));
-       assertTrue(truck.move(parkingLot));
-       assertThat(parkingLot.getCars().get(0), is(lightCar));
-       assertThat(parkingLot.getCars().get(1), is(truck));
+       Ticket ticketForLightCar = lightCar.move(parkingLot);
+       Ticket ticketForTruck = truck.move(parkingLot);
+       assertThat(parkingLot.getCars(ticketForLightCar), is(lightCar));
+       assertThat(parkingLot.getCars(ticketForTruck), is(truck));
    }
 
    @Test
-   public void whenForTruckNotSpaceThenFalse() {
+   public void whenForTruckNotSpaceThenParkingFail() {
       Car truck = new Truck(3);
       ParkingSpaces parkingLot = new ParkingLot(1, 0);
-      assertFalse(truck.move(parkingLot));
-      assertTrue(parkingLot.getCars().isEmpty());
+      Ticket ticket =  truck.move(parkingLot);
+      assertNull(parkingLot.getCars(ticket));
    }
 
    @Test
    public void whenLightCarParkingFreeForTruckThenTrue() {
-      Car lightCar = new LightCar();
       Car truck = new Truck(3);
+      Car lightCar = new LightCar();
       ParkingSpaces parkingLot = new ParkingLot(3, 0);
-      assertTrue(truck.move(parkingLot));
-      assertFalse(lightCar.move(parkingLot));
-      assertThat(parkingLot.getCars().get(0), is(truck));
-      assertThat(parkingLot.getCars().size(), is(1));
+      Ticket ticketForTruck = truck.move(parkingLot);
+      Ticket ticketForLightCaR = lightCar.move(parkingLot);
+      assertThat(parkingLot.getCars(ticketForTruck), is(truck));
+      assertNull(parkingLot.getCars(ticketForLightCaR));
    }
 
    @Test
@@ -43,7 +42,9 @@ public class ParkingTest {
       Car lightCar = new LightCar();
       Car truck = new Truck(3);
       ParkingSpaces parkingLot = new ParkingLot(4, 0);
-      assertTrue(lightCar.move(parkingLot));
-      assertTrue(truck.move(parkingLot));
+      Ticket ticketForTruck = truck.move(parkingLot);
+      Ticket ticketForLightCaR = lightCar.move(parkingLot);
+      assertThat(parkingLot.getCars(ticketForTruck), is(truck));
+      assertThat(parkingLot.getCars(ticketForLightCaR), is(lightCar));
    }
 }

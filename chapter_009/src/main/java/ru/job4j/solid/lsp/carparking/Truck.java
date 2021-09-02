@@ -7,8 +7,9 @@ public class Truck extends Car {
     }
 
     @Override
-    public boolean move(ParkingSpaces parkingSpaces) {
-        return false;
+    public Ticket move(ParkingSpaces parkingSpaces) {
+
+        return null;
     }
 }
 

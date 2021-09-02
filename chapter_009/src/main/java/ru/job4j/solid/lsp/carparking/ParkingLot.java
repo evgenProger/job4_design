@@ -14,8 +14,8 @@ public class ParkingLot implements ParkingSpaces {
 
 
     @Override
-    public List<Car> getCars() {
-        return cars;
+    public Car getCars(Ticket ticket) {
+        return null;
     }
 
     @Override
