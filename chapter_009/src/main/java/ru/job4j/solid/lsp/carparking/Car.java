@@ -12,6 +12,12 @@ public abstract class Car implements Parking {
     @Override
     public abstract Ticket move(ParkingSpaces parkingSpaces);
 
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
 
+    public Ticket getTicket() {
+        return ticket;
+    }
 }
 

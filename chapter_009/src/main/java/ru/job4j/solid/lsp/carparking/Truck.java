@@ -8,8 +8,7 @@ public class Truck extends Car {
 
     @Override
     public Ticket move(ParkingSpaces parkingSpaces) {
-
-        return null;
+        return parkingSpaces.add(this);
     }
 }
 

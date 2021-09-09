@@ -10,6 +10,9 @@ public class LightCar extends Car implements Parking {
 
     @Override
     public Ticket move(ParkingSpaces parkingSpaces) {
-        return false;
+        return parkingSpaces.add(this);
+
     }
+
+
 }

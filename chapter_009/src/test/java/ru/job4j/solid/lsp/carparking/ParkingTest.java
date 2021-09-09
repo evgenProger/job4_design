@@ -47,4 +47,45 @@ public class ParkingTest {
       assertThat(parkingLot.getCars(ticketForTruck), is(truck));
       assertThat(parkingLot.getCars(ticketForLightCaR), is(lightCar));
    }
+
+   @Test
+   public void whenFreeOnlyTruckOfParkLotThenParkingLightCar() {
+      Car lightCar = new LightCar();
+      Car lightCarTwo = new LightCar();
+      ParkingSpaces parkingLot = new ParkingLot(0, 2);
+      Ticket ticketForLightCar = lightCar.move(parkingLot);
+      Ticket ticketForLightCarTwo = lightCarTwo.move(parkingLot);
+      assertThat(parkingLot.getCars(ticketForLightCar), is(lightCar));
+      assertThat(parkingLot.getCars(ticketForLightCarTwo), is(lightCarTwo));
+   }
+
+   @Test
+   public void whenHasNotPlacesForTruck() {
+      Car truck = new Truck(3);
+      ParkingSpaces parkingLot = new ParkingLot(2, 0);
+      Ticket ticketForTruck = truck.move(parkingLot);
+      assertNull(ticketForTruck);
+   }
+
+   @Test
+   public void whenHasNotPlacesForBoth() {
+      Car truck = new Truck(3);
+      Car lightCar = new LightCar();
+      ParkingSpaces parkingLot = new ParkingLot(0, 0);
+      Ticket ticketForTruck = truck.move(parkingLot);
+      Ticket ticketForLightCar = lightCar.move(parkingLot);
+      assertNull(ticketForTruck);
+      assertNull(ticketForLightCar);
+   }
+
+   @Test
+   public void whenSpaceForLightCarTakenThenFail() {
+      Car lightCar = new LightCar();
+      Car lightCarTwo = new LightCar();
+      ParkingSpaces parkingLot = new ParkingLot(1, 1);
+      Ticket ticketForLightCar = lightCar.move(parkingLot);
+      Ticket ticketForLightCarTwo = lightCarTwo.move(parkingLot);
+      assertThat(parkingLot.getCars(ticketForLightCar), is(lightCar));
+      assertNull(parkingLot.getCars(ticketForLightCarTwo));
+   }
 }
