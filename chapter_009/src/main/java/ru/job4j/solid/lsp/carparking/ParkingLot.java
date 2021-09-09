@@ -81,7 +81,7 @@ public class ParkingLot implements ParkingSpaces {
                 }
                 if (countFree >= car.size) {
                     int j = 0;
-                    while (j <= car.size) {
+                    while (j < car.size) {
                         searchFreeSpaceForLightCar(car);
                         j++;
                     }

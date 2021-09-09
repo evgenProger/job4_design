@@ -49,14 +49,15 @@ public class ParkingTest {
    }
 
    @Test
-   public void whenFreeOnlyTruckOfParkLotThenParkingLightCar() {
+   public void whenFreeOnlyTruckOfParkLotThenNull() {
       Car lightCar = new LightCar();
       Car lightCarTwo = new LightCar();
       ParkingSpaces parkingLot = new ParkingLot(0, 2);
       Ticket ticketForLightCar = lightCar.move(parkingLot);
       Ticket ticketForLightCarTwo = lightCarTwo.move(parkingLot);
-      assertThat(parkingLot.getCars(ticketForLightCar), is(lightCar));
-      assertThat(parkingLot.getCars(ticketForLightCarTwo), is(lightCarTwo));
+      assertNull(ticketForLightCar);
+      assertNull(ticketForLightCarTwo);
+
    }
 
    @Test
