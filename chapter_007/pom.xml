@@ -34,11 +34,5 @@
             <artifactId>java-sizeof</artifactId>
             <version>0.0.5</version>
         </dependency>
-
-<!--        <dependency>-->
-<!--           <groupId>ru.job4j</groupId>-->
-<!--            <artifactId>chapter_006</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
     </dependencies>
 </project>
