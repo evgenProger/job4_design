@@ -48,9 +48,13 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
-                "content='" + content + '\'' +
-                ", date='" + date + '\'' +
-                '}';
+        return "Post{"
+                + "content='"
+                + content
+                + '\''
+                + ", date='"
+                + date
+                + '\''
+                + '}';
     }
 }

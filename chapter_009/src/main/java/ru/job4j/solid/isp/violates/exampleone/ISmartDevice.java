@@ -6,9 +6,9 @@ package ru.job4j.solid.isp.violates.exampleone;
  */
 
 public interface ISmartDevice {
-    void Print();
+    void print();
 
-    void Fax() throws NoSuchMethodException;
+    void fax() throws NoSuchMethodException;
 
-    void Scan() throws NoSuchMethodException;
+    void scan() throws NoSuchMethodException;
 }

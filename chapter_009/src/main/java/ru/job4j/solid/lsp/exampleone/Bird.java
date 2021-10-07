@@ -1,7 +1,7 @@
 package ru.job4j.solid.lsp.exampleone;
 
 public class Bird {
-    public void fly() {}
+    public void fly() { }
 }
 
 /*

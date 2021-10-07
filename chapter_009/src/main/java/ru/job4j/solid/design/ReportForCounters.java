@@ -2,7 +2,7 @@ package ru.job4j.solid.design;
 
 import java.util.function.Predicate;
 
-public class ReportForCounters implements Report{
+public class ReportForCounters implements Report {
     private Store store;
 
     public ReportForCounters(Store store) {

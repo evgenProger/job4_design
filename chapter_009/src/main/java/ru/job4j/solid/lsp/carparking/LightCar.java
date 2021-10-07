@@ -1,10 +1,10 @@
 package ru.job4j.solid.lsp.carparking;
 
 public class LightCar extends Car implements Parking {
-    private final static  int size = 1;
+    private final static  int SIZE = 1;
 
     public LightCar() {
-        super(size);
+        super(SIZE);
 
     }
 

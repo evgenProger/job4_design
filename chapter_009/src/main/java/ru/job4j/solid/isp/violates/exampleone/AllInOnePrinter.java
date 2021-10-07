@@ -3,17 +3,17 @@ package ru.job4j.solid.isp.violates.exampleone;
 public class AllInOnePrinter implements ISmartDevice {
 
     @Override
-    public void Print() {
+    public void print() {
 
     }
 
     @Override
-    public void Fax() {
+    public void fax() {
 
     }
 
     @Override
-    public void Scan() {
+    public void scan() {
 
     }
 

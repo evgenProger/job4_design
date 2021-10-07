@@ -1,21 +1,21 @@
 package ru.job4j.solid.isp.violates.exampleone;
 
-public class EconomicPrinter implements ISmartDevice{
+public class EconomicPrinter implements ISmartDevice {
 
     @Override
-    public void Print() {
+    public void print() {
 
         // Yes, I can print
     }
 
     @Override
-    public void Fax()  {
+    public void fax()  {
         throw new UnsupportedOperationException();
 
     }
 
     @Override
-    public void Scan()  {
+    public void scan()  {
         throw new UnsupportedOperationException();
 
     }

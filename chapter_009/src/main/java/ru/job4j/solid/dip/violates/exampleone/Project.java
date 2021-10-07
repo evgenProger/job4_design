@@ -1,4 +1,4 @@
-package ru.job4j.solid.dip.breakdip.exampleone;
+package ru.job4j.solid.dip.violates.exampleone;
 
 /*
 Давайте начнем с кода, который нарушает принцип.

@@ -4,7 +4,7 @@ public class Image {
 
 }
 
-class JpgImage extends Image {}
+class JpgImage extends Image { }
 
 class Renderer {
     public Image render() {

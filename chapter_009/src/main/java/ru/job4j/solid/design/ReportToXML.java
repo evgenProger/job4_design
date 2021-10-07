@@ -38,7 +38,6 @@ public class ReportToXML  implements Report {
             e.printStackTrace();
         }
         System.out.println(xml);
-
         return xml;
     }
 }

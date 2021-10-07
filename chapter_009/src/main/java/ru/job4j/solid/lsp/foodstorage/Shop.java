@@ -15,11 +15,10 @@ public class Shop implements Store {
         Predicate<Double> predicate = p -> p > 25 && p <= 75;
         if (predicate.test(percentCount.percentExpired(food))) {
             res = true;
-        }
-        else if (percentCount.percentExpired(food) > 75) {
+        } else if (percentCount.percentExpired(food) > 75) {
             food.setDiscount(10);
             res = true;
-        };
+        }
         return res;
     }
 

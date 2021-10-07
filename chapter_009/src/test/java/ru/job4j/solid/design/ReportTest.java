@@ -13,8 +13,6 @@ import static org.junit.Assert.*;
 
 public class ReportTest {
 
-    private static final Object UTF = 8;
-
     @Test
     public void whenOldGenerated() {
         MemStore store = new MemStore();
@@ -107,17 +105,17 @@ public class ReportTest {
         Report engine = new ReportToXML(store);
         StringBuilder sb = new StringBuilder();
         sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
-                .append(System.lineSeparator())
+                .append("\n")
                 .append("<Employees>")
-                .append(System.lineSeparator());
+                .append("\n");
         for (Employee emp : store.findBy(employee -> true)) {
             String expect = String.format("<Employee name=\"%s\" hired=\"%s\" fired=\"%s\" salary=\"%s\"/>",
                     emp.getName(), dateFormat.format(emp.getHired().getTime()),
                     dateFormat.format(emp.getFired().getTime()), emp.getSalary());
-            sb.append(expect).append(System.lineSeparator());
+            sb.append(expect).append("\n");
         }
         sb.append("</Employees>")
-                .append(System.lineSeparator());
+                .append("\n");
         assertThat(engine.generate(em -> true).replaceAll(" ", ""),
                 is(sb.toString().replaceAll(" ", "")));
     }

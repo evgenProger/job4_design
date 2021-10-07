@@ -14,12 +14,14 @@ import static org.junit.Assert.*;
 public class DirFileCashTest {
     @Test
     public void whenLoadThenGetContent() throws IOException {
-        DirFileCash dirFileCash = new DirFileCash("/home/evgeny/job4_design/chapter_008/Dir");
+        DirFileCash dirFileCash = new DirFileCash("Dir");
         String res = dirFileCash.load("Names.txt");
         StringBuilder sb = new StringBuilder();
-        try (BufferedReader in = new BufferedReader(new FileReader("/home/evgeny/job4_design/chapter_008/Dir/Names.txt"))) {
+
+        try (BufferedReader in = new BufferedReader(new FileReader("Dir/Names.txt"))) {
             for (String line = in.readLine(); line != null; line = in.readLine()) {
                 sb.append(line);
+                sb.append(System.lineSeparator());
             }
         }
         String expect = sb.toString();
