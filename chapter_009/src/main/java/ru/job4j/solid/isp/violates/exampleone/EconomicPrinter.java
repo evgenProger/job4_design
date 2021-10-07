@@ -5,7 +5,7 @@ public class EconomicPrinter implements ISmartDevice {
     @Override
     public void print() {
 
-        // Yes, I can print
+
     }
 
     @Override
@@ -20,7 +20,7 @@ public class EconomicPrinter implements ISmartDevice {
 
     }
 
-    /*
+    /**
     This is not very good.
     https://dzone.com/articles/solid-principles-by-example-interface-segregation
      */

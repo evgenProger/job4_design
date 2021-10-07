@@ -18,8 +18,8 @@ public class EchoServer {
         try (ServerSocket server = new ServerSocket(9000)) {
             while (!server.isClosed()) {
                 Socket socket = server.accept();
-                try (OutputStream out = socket.getOutputStream();               // выходной поток (ответ сервера)
-                     //in входной поток (отправленный клиентом)
+                try (OutputStream out = socket.getOutputStream();
+
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     String str = in.readLine();

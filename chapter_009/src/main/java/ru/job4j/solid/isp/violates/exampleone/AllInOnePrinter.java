@@ -17,7 +17,7 @@ public class AllInOnePrinter implements ISmartDevice {
 
     }
 
-    /*
+    /**
     Simple, isn't it? Right. Now suppose we need to handle a dumb device (EconomicPrinter class) that can only print.
     We're forced to implement the Whole interface, for example:
      */

@@ -10,7 +10,7 @@ package ru.job4j.solid.lsp.exampletwo;
  */
 
 public class LspDemo {
-    /*
+    /**
      * Следует отметить, что согласно определению Rectangle, следующее всегда должно выполняться, учитывая данные ниже:
      * 1. Длина всегда должна быть равна длине, переданной в качестве входных данных в метод setLength.
      * 2. Ширина всегда должна быть равна ширине, передаваемой в качестве входных данных в метод setBreadth.
@@ -28,14 +28,14 @@ public class LspDemo {
         r.setBreadth(2);
         r.setLength(3);
 
-        /* Область утверждения
+        /** Область утверждения
          Исходя из кода, ожидаемое поведение таково, что
          площадь прямоугольника равна 6
          */
 
         assert r.getArea() == 6 : printError("area", r);
 
-   /*
+   /**
     Утверждаем длину и ширину
           Исходя из кода, ожидаемое поведение таково, что
           длина всегда должна быть равна 3 и
@@ -53,14 +53,12 @@ public class LspDemo {
     public static void main(String[] args) {
         LspDemo lspDemo = new LspDemo();
 
-        // Экземпляр Rectangle передан
         lspDemo.calculateArea(new Rectangle());
 
-        // Экземпляр Square передан
         lspDemo.calculateArea(new Square());
     }
 
- /*
+ /**
  Учитывая приведенный выше код, в чем проблема с ISA-связью Square-Rectangle?
 
 Классу Square не нужны такие методы, как setBreadth или setLength, поскольку стороны квадрата равны. Это расточительно.

@@ -71,20 +71,15 @@ public class Catalog {
         Book book1 = new Book(false, "Arthur C. Clarke", 356);
         final Catalog catalog = new Catalog(new Book[] {book, book1});
         JAXBContext context = JAXBContext.newInstance(Catalog.class);
-        // создаем сериализатор
         Marshaller marshaller = context.createMarshaller();
-        // указываем что нам нужно форматирование
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         String xml;
         try (StringWriter writer = new StringWriter()) {
-            // Сериализуем
             marshaller.marshal(catalog, writer);
             xml = writer.getBuffer().toString();
             System.out.println(xml);
-            // Для сериализации нам нужно создать десериализатор
             Unmarshaller unmarshaller = context.createUnmarshaller();
             try (StringReader reader = new StringReader(xml)) {
-                // десериализуем
                 Catalog result = (Catalog) unmarshaller.unmarshal(reader);
                 System.out.println(result);
             }
