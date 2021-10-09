@@ -23,7 +23,9 @@ public class Trash implements Store {
         foods.add(food);
     }
 
+    @Override
     public List<Food> getFoods() {
         return foods;
     }
+
 }
