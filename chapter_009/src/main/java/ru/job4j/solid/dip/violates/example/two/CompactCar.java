@@ -11,14 +11,7 @@ public class CompactCar {
     public void reserve(Client client) {
         this.client = client;
     }
-
-    /**
-     * method checks
-     * @return true or false
-     */
-
     public boolean hasGPS() {
         return false;
     }
-
 }

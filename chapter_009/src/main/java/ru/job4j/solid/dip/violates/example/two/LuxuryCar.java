@@ -20,11 +20,6 @@ public class LuxuryCar {
         this.client = client;
     }
 
-    /**
-     * method checks
-     * @return  true or false
-     */
-
     public boolean hasSatelliteRoadsideAssistance() {
         return false;
     }
