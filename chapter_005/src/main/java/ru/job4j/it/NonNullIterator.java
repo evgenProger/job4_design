@@ -34,4 +34,5 @@ public class NonNullIterator implements Iterator<Integer> {
         }
         return data[index++];
     }
+
 }
