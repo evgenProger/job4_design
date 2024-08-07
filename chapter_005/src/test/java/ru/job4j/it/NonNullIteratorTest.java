@@ -72,5 +72,4 @@ class NonNullIteratorTest {
         assertThat(iterator.hasNext()).isFalse();
         assertThat(iterator.hasNext()).isFalse();
     }
-
 }
