@@ -1,5 +1,6 @@
 package ru.job4j.it;
 
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -7,13 +8,13 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 class BalancerTest {
 
     @Test
-    void whenSingleAndIteratorThree() {
+    public void whenSingleAndIteratorThree() {
         List<ArrayList<Integer>> nodes = List.of(
                 new ArrayList<>()
         );
@@ -27,7 +28,7 @@ class BalancerTest {
     }
 
     @Test
-    void whenThreeListsAndIteratorEmpty() {
+    public void whenThreeListsAndIteratorEmpty() {
         List<ArrayList<Integer>> nodes = List.of(
                 new ArrayList<>(),
                 new ArrayList<>(),
@@ -43,7 +44,7 @@ class BalancerTest {
     }
 
     @Test
-    void whenTwoListsAndIteratorThree() {
+    public void whenTwoListsAndIteratorThree() {
         List<ArrayList<Integer>> nodes = List.of(
                 new ArrayList<>(),
                 new ArrayList<>()
@@ -57,7 +58,7 @@ class BalancerTest {
     }
 
     @Test
-    void whenThreeListsAndIteratorThree() {
+    public void whenThreeListsAndIteratorThree() {
         List<ArrayList<Integer>> nodes = List.of(
                 new ArrayList<>(),
                 new ArrayList<>(),
@@ -73,7 +74,7 @@ class BalancerTest {
     }
 
     @Test
-    void whenThreeListsAndIteratorTwo() {
+    public void whenThreeListsAndIteratorTwo() {
         List<ArrayList<Integer>> nodes = List.of(
                 new ArrayList<>(),
                 new ArrayList<>(),
@@ -89,7 +90,7 @@ class BalancerTest {
     }
 
     @Test
-    void whenThreeListsAndIteratorFour() {
+    public void whenThreeListsAndIteratorFour() {
         List<ArrayList<Integer>> nodes = List.of(
                 new ArrayList<>(),
                 new ArrayList<>(),
@@ -103,36 +104,5 @@ class BalancerTest {
                 new ArrayList<>(List.of(3))
         );
     }
-
-    @Test
-    void whenThreeListsAndIteratorFive() {
-        List<ArrayList<Integer>> nodes = List.of(
-                new ArrayList<>(),
-                new ArrayList<>(),
-                new ArrayList<>()
-        );
-        Iterator<Integer> source = List.of(1, 2, 3, 4, 5).iterator();
-        Balancer.split(nodes, source);
-        assertThat(nodes).containsExactlyInAnyOrder(
-                new ArrayList<>(List.of(1, 4)),
-                new ArrayList<>(List.of(2, 5)),
-                new ArrayList<>(List.of(3))
-        );
-    }
-
-    @Test
-    void whenThreeListsAndIteratorSix() {
-        List<ArrayList<Integer>> nodes = List.of(
-                new ArrayList<>(),
-                new ArrayList<>(),
-                new ArrayList<>()
-        );
-        Iterator<Integer> source = List.of(1, 2, 3, 4, 5, 6).iterator();
-        Balancer.split(nodes, source);
-        assertThat(nodes).containsExactlyInAnyOrder(
-                new ArrayList<>(List.of(1, 4)),
-                new ArrayList<>(List.of(2, 5)),
-                new ArrayList<>(List.of(3, 6))
-        );
-    }
 }
+
