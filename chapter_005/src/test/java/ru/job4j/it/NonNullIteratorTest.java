@@ -1,11 +1,9 @@
 package ru.job4j.it;
 
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import java.util.*;
 
 class NonNullIteratorTest {
 
@@ -17,7 +15,7 @@ class NonNullIteratorTest {
     }
 
     @Test
-    void shouldReturnNotNullElementsSequentially() {
+    public void shouldReturnNotNullElementsSequentially() {
         assertThat(iterator.hasNext()).isTrue();
         assertThat(iterator.next()).isEqualTo(2);
         assertThat(iterator.hasNext()).isTrue();
@@ -30,7 +28,7 @@ class NonNullIteratorTest {
     }
 
     @Test
-    void sequentialHasNextInvocationDoesntAffectRetrievalOrder() {
+    public void sequentialHasNextInvocationDoesntAffectRetrievalOrder() {
         assertThat(iterator.hasNext()).isTrue();
         assertThat(iterator.hasNext()).isTrue();
         assertThat(iterator.next()).isEqualTo(2);
@@ -39,19 +37,19 @@ class NonNullIteratorTest {
     }
 
     @Test
-    void  shouldReturnFalseIfNoAnyNotNullElements() {
+    public void  shouldReturnFalseIfNoAnyNotNullElements() {
         iterator = new NonNullIterator(new Integer[]{null});
         assertThat(iterator.hasNext()).isFalse();
     }
 
     @Test
-    void  shouldReturnFalseIfNoAnyElements() {
+    public void  shouldReturnFalseIfNoAnyElements() {
         iterator = new NonNullIterator(new Integer[]{});
         assertThat(iterator.hasNext()).isFalse();
     }
 
     @Test
-    void allNumbersAreNotNull() {
+    public void allNumbersAreNotNull() {
         iterator = new NonNullIterator(new Integer[] {2, 4, 6, 8});
         assertThat(iterator.hasNext()).isTrue();
         assertThat(iterator.next()).isEqualTo(2);
@@ -65,7 +63,7 @@ class NonNullIteratorTest {
     }
 
     @Test
-    void allNumbersAreNull() {
+    public void allNumbersAreNull() {
         iterator = new NonNullIterator(new Integer[] {null, null, null, null});
         assertThat(iterator.hasNext()).isFalse();
         assertThat(iterator.hasNext()).isFalse();
